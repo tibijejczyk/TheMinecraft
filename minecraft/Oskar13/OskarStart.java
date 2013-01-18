@@ -43,7 +43,7 @@ import cpw.mods.fml.common.SidedProxy;
 
 public class OskarStart {
 	
-	@SidedProxy(clientSide="Averse.proxy.server.ClientProxy", serverSide="Averse.proxy.CommonProxy")
+	@SidedProxy(clientSide="net.minecraft.client.proxyClient", serverSide="cpw.mods.fml.common.proxyServer.proxyServer")
 	@Instance("mod_Oskar13")
 	public static OskarStart instance;
 
