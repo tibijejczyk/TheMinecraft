@@ -3,5 +3,5 @@
  
 Stworznie podstaw systemu postaci i zarysu przydzielania modeli.
 Utworzenie projektu na platformie github.
-Aktualizacja projektu do wersji gry 1.4.6
+Aktualizacja projektu do wersji gry 1.4.7
 Stworzenie PacketHandler
