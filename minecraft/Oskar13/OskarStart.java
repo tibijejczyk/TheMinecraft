@@ -30,6 +30,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.network.Player;
+import cpw.mods.fml.common.proxyServer.proxyServer;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -43,8 +44,11 @@ import cpw.mods.fml.common.SidedProxy;
 
 public class OskarStart {
 	
-	@SidedProxy(clientSide="net.minecraft.client.proxyClient", serverSide="cpw.mods.fml.common.proxyServer.proxyServer")
-	@Instance("mod_Oskar13")
+	@SidedProxy(clientSide="net.minecraft.client.proxyClient.proxyClient", serverSide="cpw.mods.fml.common.proxyServer.proxyServer")
+	public static proxyServer proxy;
+	
+	
+	@Instance("OskarStart")
 	public static OskarStart instance;
 
 	
