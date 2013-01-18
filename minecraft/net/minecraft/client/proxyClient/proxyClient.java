@@ -1,6 +1,10 @@
 package net.minecraft.client.proxyClient;
 
+import net.minecraft.entity.player.EntityPlayer;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.proxyServer.proxyServer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class proxyClient extends proxyServer {
 	
@@ -8,13 +12,23 @@ public class proxyClient extends proxyServer {
 	// ew. mo¿na dorobiæ jeszcze jakieœ nie bêdzie syfu!:(
 	
 	@Override
-	public void Oskar13()  {}
+	public void Oskar13()  {
+
+	}
 	
 	@Override
 	public void Dexter() {}
 	
 	@Override
 	public void Omlet() {}
+
+	
+	@SideOnly(Side.CLIENT)
+	public static EntityPlayer getPlayer() {
+		return FMLClientHandler.instance().getClient().thePlayer;
+	}
+
+	
 	
 
 }

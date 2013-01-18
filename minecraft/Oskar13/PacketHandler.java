@@ -25,14 +25,14 @@ public static boolean connect = false;
 		switch(FMLCommonHandler.instance().getEffectiveSide()) {
 			case SERVER: {
 				switch(id) {
-				//case 1:
+				case 1: OskarStart.instance.packetSaveData.readServer(id, dat, extradata); break;
 
 				}
 				break;
 			}
 			case CLIENT: {
 				switch(id) {
-				//	case 1: 
+					case 1: OskarStart.instance.packetSaveData.readClient(id, dat, extradata); break;
 			
 				}
 				break;
