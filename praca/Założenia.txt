@@ -6,6 +6,9 @@ G - gotowe
 
 Serwer TheMinecraft.pl RPG. Opis ogólny funkcji. Szczegó³y w odpowiednich plikach:
  - System postaci:
+	- G Podstawy
+    - D Modele
+	- N GUI
  
  - Gildie:
 	- N podstawy 
