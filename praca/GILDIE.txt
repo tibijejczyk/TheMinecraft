@@ -1,3 +1,5 @@
+TEST PUSHA
+
 Iloœæ cz³onków w gildi dla danego poziomu:
 1 - 5
 2 - 6
