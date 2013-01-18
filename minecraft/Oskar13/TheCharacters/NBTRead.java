@@ -9,6 +9,8 @@ public class NBTRead {
 
 	public NBTRead(String nick) { 
 		
+		
+		OskarStart.debug("Poprawne uruchomienie NBTREAD");
 		EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(nick);
 		NBTTagCompound oldnbt = player.getEntityData();
 		NBTTagCompound nbt = oldnbt.getCompoundTag("Characters");
