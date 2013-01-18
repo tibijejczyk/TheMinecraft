@@ -11,7 +11,7 @@ Serwer TheMinecraft.pl RPG. Opis ogólny funkcji. Szczegó³y w odpowiednich plikac
 	- N GUI
  
  - Gildie:
-	- N podstawy 
+	- D podstawy 
 	- N lvl gildi
 	- N w³asna ziemia
 	- N ranking na WWW 
