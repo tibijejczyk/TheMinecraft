@@ -2,4 +2,4 @@ ID	| Nazwa 						| Kto 						| Data rozpoczêcia 	| Data zakoñczenia
 ----------------------------------------------------------------------------------------------------
 1. 	| System postaci 				| Oskar 					| 01.18				|
 2. 	| Gildie 						| DeX3r 					| 01.18				|
-1. 	| System bonusów				| Oskar 					| -			        |
+3. 	| System bonusów				| Oskar 					| -			        |
