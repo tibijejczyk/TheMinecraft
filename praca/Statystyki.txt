@@ -1,0 +1,18 @@
+System Statystyk zawieraæ bêdzie nastêpuj¹ce atrybuty: 
+
+Si³a, Zrêcznoœæ, ¯ycie, Mana, Defensywnoœæ.
+
+
+~ 5 punktów ¿ycia bêdzie odpowiada³o jednemu "serduszku" w grze.
+
+
+
+.. reszta do ustalenia z team .. 
+
+
+
+
+
+Maxymalne atrybuty to 30 pkt.
+
+
