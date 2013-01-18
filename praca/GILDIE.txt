@@ -1,0 +1,54 @@
+Iloœæ cz³onków dla gildi dla danego poziomu:
+1 - 5
+2 - 6
+3 - 7
+...
+30 - 35
+
+Iloœæ punktów doœwiadczenia na lvl:
+2 - 825
+3 - 825
+4 - 825
+5 - 825
+6 - 825 + ((6*6 / 25) * 825)
+n - 825 + ((n*n / 25) * 825)
+10 - 5 * 825
+30 - 825 + ((30*30 / 25) * 825) = 37 * 825 = 30525
+
+Iloœæ chunków na lvl:
+1 - 4
+3 - 6
+5 - 10
+7 - 13
+9 - 15
+11 - 17
+13 - 19
+15 - 20
+17 - 21
+19 - 23
+21 - 25
+23 - 27
+25 - 29
+27 - 31
+29 - 33
+30 - 40
+
+Ranking gildii:
+Nazwa - Lvl - Lider - Iloœæ zwyciêstw(Z) - Iloœæ przegranych - Procent zwyciêstw(P)
+Pozycja na rankingu liczona wed³ug wzoru: (P + P * (Z * 0,03)) * 100
+
+Skille gildi - za ka¿dy lvl gildia dostaje 1 pkt do rozdania (zobacz Excel). Skille mog¹ byæ u¿ywane tylko, podczas wojny gildii.
+
+Cz³onkowie gildii: (ka¿dy wy¿szy cz³onek mo¿e robiæ to samo, co ni¿si cz³onkowie)
+W³aœciciel - ma ca³kowit¹ w³adzê nad gildi¹, mo¿e j¹ przekazaæ innemu graczowi.
+Zastêpca - podobnie jak w³aœciciel, jednak nie mo¿e przekazaæ zastêpstwa.
+Magik - mo¿e u¿ywaæ skili gildyjnych.
+Dyplomata - mo¿e wypowiadaæ innym gildiom stan wojny, zawierac sojusze, wyzywaæ gildie na pojedynek oraz akceptowaæ pojedynki.
+Rekruter - Mo¿e zapraszaæ innych cz³onków do gildii.
+Wojownik - zwyk³y cz³onek, mo¿e braæ udzia³ w wojnach, oddawaæ poziomy doœwiadczenia do gildii, pisaæ na czacie gildii, odejœæ z gildii.
+
+Gildia nie mo¿e zostaæ usuniêta, nie mo¿na zmieniæ jej nazwy. Mo¿na zapraszaæ tylko graczy, którzy nie s¹ w gildii. Za³o¿enie gildii kosztuje 5 diamentów. Reset skili gildii kosztuje 1 diament. 
+
+Gildia posiada w³asny czat, wyró¿nia siê on kolorem (jakim?). Aby na nim pisaæ u¿ywa siê /g TEKST
+Sk³ad:
+[Pozycja][Nick]:

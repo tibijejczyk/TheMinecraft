@@ -1,0 +1,16 @@
+Legenda:
+N - nie gotowe
+D - w fazie developingu (tworzenia)
+T - oczekuje na tekstuy
+G - gotowe
+
+Serwer TheMinecraft.pl RPG. Opis ogólny funkcji. Szczegó³y w odpowiednich plikach:
+ - System postaci:
+ 
+ - Gildie:
+	- N podstawy 
+	- N lvl gildi
+	- N w³asna ziemia
+	- N ranking na WWW 
+	- N skille
+	- N walki

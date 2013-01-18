@@ -1,0 +1,4 @@
+ID	| Nazwa 						| Kto 						| Data rozpoczêcia 	| Data zakoñczenia
+----------------------------------------------------------------------------------------------------
+1. 	| System postaci 				| Oskar 					| 01.18				|
+2. 	| Gildie 						| DeX3r 					| 01.18				|
