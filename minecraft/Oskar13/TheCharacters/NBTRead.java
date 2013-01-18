@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class NBTRead {
-
+//1-18
 	public NBTRead(String nick) { 
 		
 		

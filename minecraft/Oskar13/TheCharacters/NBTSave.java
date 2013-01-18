@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import Oskar13.OskarStart;
 
 public class NBTSave {
-
+//18-1
 	public NBTSave(String nick)  {
 		
 		
