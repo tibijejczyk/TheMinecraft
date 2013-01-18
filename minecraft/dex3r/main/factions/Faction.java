@@ -11,6 +11,7 @@ import net.minecraft.util.ChunkCoordinates;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.server.FMLServerHandler;
+import dex3r.main.DexMain;
 
 public class Faction
 {
@@ -30,7 +31,7 @@ public class Faction
 	
 	public boolean addMember(String nickname)
 	{
-		if(PlayerSelector.matchOnePlayer(RConConsoleSource.consoleBuffer, nickname) != null)
+		if(DexMain.isPlayerOnline(nickname))
 		{
 			members.add(new FactionMember(nickname, FactionMemberRank.Warrior));
 			return true;

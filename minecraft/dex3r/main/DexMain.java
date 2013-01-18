@@ -1,5 +1,8 @@
 package dex3r.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.Init;
@@ -77,6 +80,19 @@ public class DexMain
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		// Stub Method
+	}
+	
+	public static boolean isPlayerOnline(String nickname)
+	{
+		String[] playersOnline = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getAllUsernames();
+		for(int i = 0; i < playersOnline.length; i++)
+		{
+			if(playersOnline[i].equals(nickname))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }
 
