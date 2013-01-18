@@ -533,6 +533,9 @@ public class GuiMainMenu extends GuiScreen
         
         var10 = "Tak huje, to dzia³a";
         this.drawString(this.fontRenderer, var10, this.width - this.fontRenderer.getStringWidth(var10) - 2, this.height - 23, 16777215);
+        
+        var10 = "Ciekawe co bêdzie, jak w tym samym momecie wyœlemy zmiany";
+        this.drawString(this.fontRenderer, var10, this.width - this.fontRenderer.getStringWidth(var10) - 2, this.height - 49, 16777215);
 
         if (this.field_92025_p != null && this.field_92025_p.length() > 0)
         {
