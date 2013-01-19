@@ -9,31 +9,10 @@ Iloœæ cz³onków w gildi dla danego poziomu:
 
 Iloœæ punktów doœwiadczenia na lvl:
 2 - 825
-3 - 825
-4 - 825
-5 - 825
-6 - 825 + ((6*6 / 25) * 825)
+3 - 825 + ((3*3 / 25) * 825)
 n - 825 + ((n*n / 25) * 825)
 10 - 5 * 825
 30 - 825 + ((30*30 / 25) * 825) = 37 * 825 = 30525
-
-Iloœæ chunków na lvl:
-1 - 4
-3 - 6
-5 - 10
-7 - 13
-9 - 15
-11 - 17
-13 - 19
-15 - 20
-17 - 21
-19 - 23
-21 - 25
-23 - 27
-25 - 29
-27 - 31
-29 - 33
-30 - 40
 
 Ranking gildii:
 Nazwa - Lvl - Lider - Iloœæ zwyciêstw(Z) - Iloœæ przegranych - Procent zwyciêstw(P)
