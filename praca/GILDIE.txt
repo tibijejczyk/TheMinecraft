@@ -1,5 +1,3 @@
-TEST PUSHA
-
 Iloœæ cz³onków w gildi dla danego poziomu:
 1 - 5
 2 - 6
@@ -29,6 +27,8 @@ Rekruter - Mo¿e zapraszaæ innych cz³onków do gildii.
 Wojownik - zwyk³y cz³onek, mo¿e braæ udzia³ w wojnach, oddawaæ poziomy doœwiadczenia do gildii, pisaæ na czacie gildii, odejœæ z gildii.
 
 Gildia nie mo¿e zostaæ usuniêta, nie mo¿na zmieniæ jej nazwy. Mo¿na zapraszaæ tylko graczy, którzy nie s¹ w gildii. Za³o¿enie gildii kosztuje 5 diamentów. Reset skili gildii kosztuje 1 diament. 
+
+Gildia mo¿e posiadaæ w³asn¹ ziemiê. Jej czêœci (chunki) musz¹ byæ po³¹czone.
 
 Gildia posiada w³asny czat, wyró¿nia siê on kolorem (jakim?). Aby na nim pisaæ u¿ywa siê /g TEKST
 Sk³ad:
