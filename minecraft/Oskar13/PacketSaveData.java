@@ -145,7 +145,7 @@ new NBTRead(s);
 	public void clientLoggedIn(NetHandler clientHandler,
 			INetworkManager manager, Packet1Login login) {
 
-		
+
 	}
 
 

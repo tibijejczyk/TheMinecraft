@@ -13,7 +13,7 @@ public class Stats {
 	
 	public Stats()  { 
 		
-	hp = 0;
+	hp = 5;
 	mp = 0;
 	str = 0;
 	dex = 0;

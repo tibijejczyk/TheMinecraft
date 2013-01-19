@@ -27,7 +27,7 @@ public class NBTRead {
 			Characters.getPlayer(nick).getStats().modelName = nbt.getString("modelName");
 			
 		} else { 
-			
+			OskarStart.debug("Brak nbt dla gracza " + nick);
 			new Stats();
 			OskarStart.sendStats(nick, Characters.getPlayer(nick).getStats());
 			

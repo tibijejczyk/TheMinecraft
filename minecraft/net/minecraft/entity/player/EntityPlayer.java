@@ -1,5 +1,7 @@
 package net.minecraft.entity.player;
 
+import Oskar13.TheCharacters.Characters;
+import Oskar13.TheCharacters.Stats;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -174,18 +176,19 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         super(par1World);
         this.inventoryContainer = new ContainerPlayer(this.inventory, !par1World.isRemote, this);
         this.openContainer = this.inventoryContainer;
-        this.yOffset = 1.62F;
+        this.yOffset = Characters.getModel(username).yOffset;
         ChunkCoordinates var2 = par1World.getSpawnPoint();
         this.setLocationAndAngles((double)var2.posX + 0.5D, (double)(var2.posY + 1), (double)var2.posZ + 0.5D, 0.0F, 0.0F);
         this.entityType = "humanoid";
         this.field_70741_aB = 180.0F;
         this.fireResistance = 20;
         this.texture = "/mob/char.png";
+    //	Characters.addPlayer(username, new Characters(this, new Stats())); -Do not use
     }
-
+@Override
     public int getMaxHealth()
     {
-        return 20;
+        return 20 + Characters.getPlayer(this.username).stats.hp;
     }
 
     protected void entityInit()
@@ -941,7 +944,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 
     public float getEyeHeight()
     {
-        return 0.12F;
+        return Characters.getModel(username).eyeHeight;
     }
 
     /**
@@ -949,7 +952,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      */
     protected void resetHeight()
     {
-        this.yOffset = 1.62F;
+        this.yOffset = Characters.getModel(username).yOffset;
     }
 
     /**
@@ -1110,7 +1113,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      */
     public int getTotalArmorValue()
     {
-        return this.inventory.getTotalArmorValue();
+        return this.inventory.getTotalArmorValue() + Characters.getPlayer(username).getStats().def;
     }
 
     public float func_82243_bO()
