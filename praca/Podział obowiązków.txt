@@ -1,5 +1,6 @@
-ID	| Nazwa 						| Kto 						| Data rozpoczêcia 	| Data zakoñczenia
+ID	| Nazwa 						| Kto 						| Data rozpoczï¿½cia 	| Data zakoï¿½czenia
 ----------------------------------------------------------------------------------------------------
 1. 	| System postaci 				| Oskar 					| 01.18				|
 2. 	| Gildie 						| DeX3r 					| 01.18				|
-3. 	| System bonusów				| Oskar 					| -			        |
+3. 	| System bonusï¿½w				| Oskar 					| -			        |
+4.  | Nowe moby         | Omletowy        | -           |
