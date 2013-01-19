@@ -14,8 +14,6 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.server.FMLServerHandler;
 import dex3r.main.DexMain;
 
-//This is some kinda test, biczys!
-
 public class Faction
 {
 	public int lvl;
