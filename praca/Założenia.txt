@@ -1,7 +1,7 @@
 Legenda:
 N - nie gotowe
 D - w fazie developingu (tworzenia)
-T - oczekuje na tekstuy
+T - oczekuje na tekstury
 G - gotowe
 
 Serwer TheMinecraft.pl RPG. Opis ogólny funkcji. Szczegó³y w odpowiednich plikach:
@@ -12,7 +12,7 @@ Serwer TheMinecraft.pl RPG. Opis ogólny funkcji. Szczegó³y w odpowiednich plikac
  
  - Gildie:
 	- D podstawy 
-	- N lvl gildi
+	- D lvl gildi
 	- N w³asna ziemia
 	- N ranking na WWW 
 	- N skille
