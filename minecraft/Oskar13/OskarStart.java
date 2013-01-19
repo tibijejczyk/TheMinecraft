@@ -7,10 +7,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import Oskar13.APIs.ModChat;
 import Oskar13.TheCharacters.Stats;
+import Oskar13.commands.CommandMessage;
 
 import net.java.games.util.plugins.Plugin;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.proxyClient.proxyClient;
+import net.minecraft.command.CommandHandler;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
@@ -30,9 +34,11 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.ServerStarted;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.ITinyPacketHandler;
@@ -56,6 +62,8 @@ public class OskarStart implements IConnectionHandler
 	@SidedProxy(clientSide = "net.minecraft.client.proxyClient.proxyClient", serverSide = "cpw.mods.fml.common.proxyServer.proxyServer")
 	public static proxyServer proxy;
 
+	
+	Minecraft mc = FMLClientHandler.instance().getClient();
 	@Instance("OskarStart")
 	public static OskarStart instance;
 
@@ -117,11 +125,21 @@ public class OskarStart implements IConnectionHandler
 			PacketDispatcher.sendPacketToPlayer(pkt, (Player) player);
 		}
 	}
+	
+	
+	@ServerStarted
+	public void onServerStarted(FMLServerStartedEvent event) {
+		CommandHandler handler = (CommandHandler) MinecraftServer.getServer().getCommandManager();
+		handler.registerCommand(new  CommandMessage());
+		  
+	}
+
 
 	@Init
 	public void load(FMLInitializationEvent event)
 	{
 		NetworkRegistry.instance().registerConnectionHandler(packetSaveData);
+		mc.ingameGUI = new ModChat();
 	}
 
 	@PostInit

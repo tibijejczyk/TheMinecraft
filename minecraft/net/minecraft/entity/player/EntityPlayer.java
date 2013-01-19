@@ -196,7 +196,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 		int hp = 20;
 		if(Characters.getPlayer(this.username) != null)
 		{
-			OskarStart.debug("Hp from stats");
+
 			hp = Characters.getPlayer(this.username).stats.hp;
 		}
 		return hp;

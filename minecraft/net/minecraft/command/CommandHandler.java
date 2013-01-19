@@ -23,7 +23,8 @@ public class CommandHandler implements ICommandManager
 
     public void executeCommand(ICommandSender par1ICommandSender, String par2Str)
     {
-        if (par2Str.startsWith("/"))
+        if (par2Str.startsWith("/") || par2Str.startsWith("!"))
+        	
         {
             par2Str = par2Str.substring(1);
         }
