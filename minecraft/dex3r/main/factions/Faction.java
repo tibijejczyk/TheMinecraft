@@ -16,25 +16,29 @@ import dex3r.main.DexMain;
 
 public class Faction
 {
+	public static final HashMap<Integer, FactionLevel> stats;
+	
 	public int lvl;
-	public int maxMembers;
 	public String owner;
 	public List<FactionMember> members;
-	public static final HashMap<Integer, FactionLevel> stats;
 	private int xp;
+	private int skillPoints;
+	public String name;
 	
-	public Faction(String owner)
+	public Faction(String owner, String name)
 	{
 		this.owner = owner;
+		this.name = name;
 		lvl = 1;
-		maxMembers = 5;
+		skillPoints = 0;
+		xp = 0;
 		members = new ArrayList<FactionMember>();
 		members.add(new FactionMember(owner, FactionMemberRank.Owner));
 	}
 	
 	public boolean addMember(String caller, String target)
 	{
-		if(!DexMain.isPlayerOnline(caller) || !DexMain.isPlayerOnline(target) || getMember(caller) == null || getMember(target) != null || !getMember(caller).rank.canInvite)
+		if(!DexMain.isPlayerOnline(caller) || !DexMain.isPlayerOnline(target) || getMember(caller) == null || getMember(target) != null || !getMember(caller).rank.canInvite || members.size() >= stats.get(lvl).maxMembers)
 		{
 			return false;
 		}

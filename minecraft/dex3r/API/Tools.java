@@ -44,6 +44,8 @@ public class Tools
   public static MapLimit cfgMapLimitNether = new MapLimit();
   public static MapLimit[] cfgMapLimitDimemsion = new MapLimit[63];
   public static boolean cfgAnyWorldMapLimit;
+  
+  public static boolean chunkProtectionLoaded = true;
 
   @Mod.Instance("dexAPITools")
   public static Tools instance;
