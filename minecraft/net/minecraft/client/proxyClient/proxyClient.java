@@ -22,8 +22,7 @@ public class proxyClient extends proxyServer {
 	@Override
 	public void Omlet() {}
 
-	
-	@SideOnly(Side.CLIENT)
+
 	public static EntityPlayer getPlayer() {
 		return FMLClientHandler.instance().getClient().thePlayer;
 	}

@@ -10,6 +10,7 @@ import java.util.Map;
 import Oskar13.TheCharacters.Stats;
 
 import net.java.games.util.plugins.Plugin;
+import net.minecraft.client.proxyClient.proxyClient;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
@@ -72,6 +73,8 @@ public class OskarStart implements IConnectionHandler
 
 		}
 	}
+
+	
 
 	public static boolean isServer()
 	{

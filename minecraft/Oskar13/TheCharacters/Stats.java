@@ -1,5 +1,7 @@
 package Oskar13.TheCharacters;
 
+import Oskar13.OskarStart;
+
 public class Stats {
 
 	
@@ -12,13 +14,13 @@ public class Stats {
 	public String modelName;
 	
 	public Stats()  { 
-		
-	hp = 5;
+   OskarStart.debug("Init Stats");
+	hp = 50000;
 	mp = 0;
 	str = 0;
 	dex = 0;
 	def = 0;
-	modelName = "Human";
+	modelName = "Ghast";
 		
 
 	}

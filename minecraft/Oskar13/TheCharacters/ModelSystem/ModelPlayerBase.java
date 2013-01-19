@@ -79,7 +79,21 @@ public abstract class ModelPlayerBase extends ModelBase
 	{
 	}
 	
+    public void renderEars(float par1)
+    {
 
+    }
+
+    /**
+
+     */
+    public void renderCloak(float par1)
+    {
+   
+    }
+    
+	
+	
 	public void setRotationAngles(float move, float swing, float tick, float horz, float vert, float scale)
 	{
 	}

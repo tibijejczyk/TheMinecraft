@@ -24,6 +24,9 @@ public class ModelHuman extends ModelPlayerBase
 		rightLeg,
 		leftLeg
 	;
+    
+    public ModelRenderer bipedEars;
+    public ModelRenderer bipedCloak;
 	
 	public ModelHuman()
     {
@@ -64,6 +67,10 @@ public class ModelHuman extends ModelPlayerBase
         leftLeg.mirror = true;
         leftLeg.addBox(-2F, 0.0F, -2F, 4, 12, 4, strech);
         leftLeg.setRotationPoint(2.0F, 12F + yOffset, 0.0F);
+        this.bipedCloak = new ModelRenderer(this, 0, 0);
+        this.bipedCloak.addBox(-5.0F, 0.0F, -1.0F, 10, 16, 1, strech);
+        this.bipedEars = new ModelRenderer(this, 24, 0);
+        this.bipedEars.addBox(-3.0F, -6.0F, -1.0F, 6, 6, 1, strech);
 	}
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -171,15 +178,34 @@ public class ModelHuman extends ModelPlayerBase
             leftArm.rotateAngleX -= MathHelper.sin(f2 * 0.067F) * 0.05F;
         }
     }
-	
+    
+    
+    public void renderEars(float par1)
+    {
+        this.bipedEars.rotateAngleY = this.head.rotateAngleY;
+        this.bipedEars.rotateAngleX = this.head.rotateAngleX;
+        this.bipedEars.rotationPointX = 0.0F;
+        this.bipedEars.rotationPointY = 0.0F;
+        this.bipedEars.render(par1);
+    }
+
+    /**
+     * Renders the cloak of the current biped (in most cases, it's a player)
+     */
+    public void renderCloak(float par1)
+    {
+        this.bipedCloak.render(par1);
+    }
+    
+@Override
 	public void drawFirstPersonHand()
 	{
 	   
         
-        float var2 = 1.0F;
+        float var2 = 2.0F;
         GL11.glColor3f(var2, var2, var2);
         this.onGround = 0.0F;
-        this.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+        this.setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0825F);
        this.rightArm.render(0.0625F);
 	}
 	

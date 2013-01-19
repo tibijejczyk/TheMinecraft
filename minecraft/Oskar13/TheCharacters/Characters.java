@@ -7,6 +7,7 @@ import Oskar13.TheCharacters.ModelSystem.ModelGhast;
 import Oskar13.TheCharacters.ModelSystem.ModelHuman;
 import Oskar13.TheCharacters.ModelSystem.ModelHumanArmor;
 import Oskar13.TheCharacters.ModelSystem.PlayerModel;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class Characters
@@ -64,6 +65,27 @@ public class Characters
 
 	}
 
+	public static  PlayerModel OtherPlayerModel(EntityPlayer player)
+	{
+		if(player instanceof EntityPlayerSP)
+		{
+			return ghast;
+		}
+		
+		String username = player.username;
+		
+		if(PLAYERS.containsKey(username))
+		{
+			String pmName = PLAYERS.get(username).getStats().modelName;
+		
+				return getModel(pmName, 1);
+
+		}else {
+	   OskarStart.debug("This player isn't in HashMap");
+		return ghast;
+		}
+	}
+
 	public static boolean isModelInstalled(String name)
 	{
 
@@ -89,15 +111,23 @@ public class Characters
 	public static PlayerModel getModel(String nick)
 	{
 		Characters c = getPlayer(nick);
-		if(c == null) return null;
+		if(c == null) return (PlayerModel)MODELS.get("Ghast");
+		
+		
+		
 		return (PlayerModel) MODELS.get(c.getStats().modelName);
+	}
+	
+	public static PlayerModel getModel(String name, int NotUse){
+
+		return (PlayerModel) MODELS.get(name);
 	}
 
 	static
 	{
 
-		human = new PlayerModel("Human", new ModelHuman(), new ModelHumanArmor());
-		ghast = new PlayerModel("Ghast", new ModelGhast(), null);
+		human = new PlayerModel("Human", new ModelHuman(), new ModelHumanArmor()).setRenderScale(3F);
+		ghast = new PlayerModel("Ghast", new ModelGhast(), null).setEyeHeight(0.12F).setRenderScale(0.9375F);
 
 		addModel(human);
 		addModel(ghast);

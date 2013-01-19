@@ -1,5 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
+import Oskar13.TheCharacters.Characters;
+import Oskar13.TheCharacters.ModelSystem.PlayerModel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
@@ -13,6 +15,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
@@ -257,14 +260,32 @@ public class RenderLiving extends Render
     {
         if (!par1EntityLiving.getHasActivePotion())
         {
-            this.loadDownloadableImageTexture(par1EntityLiving.skinUrl, par1EntityLiving.getTexture());
-            this.mainModel.render(par1EntityLiving, par2, par3, par4, par5, par6, par7);
+           
+       
         }
         else
         {
             this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, par1EntityLiving);
         }
+        
+        
+        
+        
+    	if(par1EntityLiving instanceof EntityPlayer)
+		{
+			String username = ((EntityPlayer)par1EntityLiving).username;
+			PlayerModel pm = Characters.OtherPlayerModel((EntityPlayer)par1EntityLiving);
+			String url = pm.base.textureUrl;
+			if(url != null)
+				url = url.replaceAll("%NAME%", username);
+			loadDownloadableImageTexture(url, pm.base.texture);
+		}
+		else
+			loadDownloadableImageTexture(par1EntityLiving.skinUrl, par1EntityLiving.getTexture());
+        mainModel.render(par1EntityLiving, par2, par3, par4, par5, par6, par7);
     }
+        
+    
 
     /**
      * Sets a simple glTranslate on a LivingEntity.

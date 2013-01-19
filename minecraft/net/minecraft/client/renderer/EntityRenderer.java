@@ -1,5 +1,9 @@
 package net.minecraft.client.renderer;
 
+import Oskar13.OskarStart;
+import Oskar13.TheCharacters.Characters;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.awt.image.BufferedImage;
@@ -15,6 +19,7 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.particle.EntityRainFX;
 import net.minecraft.client.particle.EntitySmokeFX;
+import net.minecraft.client.proxyClient.proxyClient;
 import net.minecraft.client.renderer.culling.ClippingHelperImpl;
 import net.minecraft.client.renderer.culling.Frustrum;
 import net.minecraft.crash.CrashReport;
@@ -77,7 +82,9 @@ public class EntityRenderer
     private float thirdPersonDistance = 4.0F;
 
     /** Third person distance temp */
-    private float thirdPersonDistanceTemp = 4.0F;
+    
+
+    private float thirdPersonDistanceTemp =     Characters.getModel(FMLClientHandler.instance().getClient().session.username).cameraDistance;
     private float debugCamYaw = 0.0F;
     private float prevDebugCamYaw = 0.0F;
     private float debugCamPitch = 0.0F;
@@ -436,7 +443,7 @@ public class EntityRenderer
     private void orientCamera(float par1)
     {
         EntityLiving var2 = this.mc.renderViewEntity;
-        float var3 = var2.yOffset - 1.62F;
+        float var3 = var2.yOffset - Characters.getModel(FMLClientHandler.instance().getClient().session.username).yOffset;
         double var4 = var2.prevPosX + (var2.posX - var2.prevPosX) * (double)par1;
         double var6 = var2.prevPosY + (var2.posY - var2.prevPosY) * (double)par1 - (double)var3;
         double var8 = var2.prevPosZ + (var2.posZ - var2.prevPosZ) * (double)par1;
@@ -456,7 +463,7 @@ public class EntityRenderer
         }
         else if (this.mc.gameSettings.thirdPersonView > 0)
         {
-            double var27 = (double)(this.thirdPersonDistanceTemp + (this.thirdPersonDistance - this.thirdPersonDistanceTemp) * par1);
+            double var27 = (double)(this.thirdPersonDistanceTemp + (Characters.getModel(Minecraft.getMinecraft().thePlayer.username).cameraDistance - this.thirdPersonDistanceTemp) * par1);
             float var13;
             float var28;
 

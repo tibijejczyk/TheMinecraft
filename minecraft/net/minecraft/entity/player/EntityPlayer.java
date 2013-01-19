@@ -1,5 +1,6 @@
 package net.minecraft.entity.player;
 
+import Oskar13.OskarStart;
 import Oskar13.TheCharacters.Characters;
 import Oskar13.TheCharacters.Stats;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -195,7 +196,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 		int hp = 20;
 		if(Characters.getPlayer(this.username) != null)
 		{
-			hp += Characters.getPlayer(this.username).stats.hp;
+			OskarStart.debug("Hp from stats");
+			hp = Characters.getPlayer(this.username).stats.hp;
 		}
 		return hp;
     }
@@ -1561,7 +1563,12 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      */
     public void wakeUpPlayer(boolean par1, boolean par2, boolean par3)
     {
-        this.setSize(0.6F, 1.8F);
+
+    		
+    this.setSize(Characters.getModel(username).width,Characters.getModel(username).height);
+    		
+ 
+    	
         this.resetHeight();
         ChunkCoordinates var4 = this.playerLocation;
         ChunkCoordinates var5 = this.playerLocation;

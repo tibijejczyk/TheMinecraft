@@ -1,0 +1,9 @@
+Klasy edytowane przez Oskara:
+
+EntityPlayer
+EntityRender
+RenderLiving
+RenderPlayer
+ItemStack
+
+------------------------------
