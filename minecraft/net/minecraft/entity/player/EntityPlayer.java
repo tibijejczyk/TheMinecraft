@@ -176,7 +176,11 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         super(par1World);
         this.inventoryContainer = new ContainerPlayer(this.inventory, !par1World.isRemote, this);
         this.openContainer = this.inventoryContainer;
-        this.yOffset = Characters.getModel(username).yOffset;
+        this.yOffset = 1.62F;
+        if(Characters.getModel(username) != null)
+        {
+        	this.yOffset = Characters.getModel(username).yOffset;
+        }
         ChunkCoordinates var2 = par1World.getSpawnPoint();
         this.setLocationAndAngles((double)var2.posX + 0.5D, (double)(var2.posY + 1), (double)var2.posZ + 0.5D, 0.0F, 0.0F);
         this.entityType = "humanoid";
@@ -188,7 +192,12 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
 @Override
     public int getMaxHealth()
     {
-        return 20 + Characters.getPlayer(this.username).stats.hp;
+		int hp = 20;
+		if(Characters.getPlayer(this.username) != null)
+		{
+			hp += Characters.getPlayer(this.username).stats.hp;
+		}
+		return hp;
     }
 
     protected void entityInit()

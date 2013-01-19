@@ -19,7 +19,6 @@ import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.server.MinecraftServer;
 
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -48,150 +47,121 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.relauncher.Side;
 
-
-
 @Mod(modid = "OskarStart", name = "Klasa Startowa Oskara", version = "1.0")
-@NetworkMod(clientSideRequired=true, serverSideRequired=true,  packetHandler = PacketHandler.class, channels = { "Oskar13" })
+@NetworkMod(clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class, channels = { "Oskar13" })
+public class OskarStart implements IConnectionHandler
+{
 
-
-public class OskarStart implements IConnectionHandler{
-	
-	@SidedProxy(clientSide="net.minecraft.client.proxyClient.proxyClient", serverSide="cpw.mods.fml.common.proxyServer.proxyServer")
+	@SidedProxy(clientSide = "net.minecraft.client.proxyClient.proxyClient", serverSide = "cpw.mods.fml.common.proxyServer.proxyServer")
 	public static proxyServer proxy;
-	
-	
+
 	@Instance("OskarStart")
 	public static OskarStart instance;
 
-	//PACKETS
+	// PACKETS
 	public PacketSaveData packetSaveData = new PacketSaveData();
-	
 
-   private static boolean debug = true;
+	private static boolean debug = true;
 
+	public static void debug(String deg)
+	{
 
-public static void debug(String deg) {
-	
-	if(debug == true) { 	 
-		System.out.println(deg);
-		
+		if (debug == true)
+		{
+			System.out.println(deg);
+
+		}
 	}
-}
 
+	public static boolean isServer()
+	{
 
+		return FMLCommonHandler.instance().getEffectiveSide().isServer();
+	}
 
-public static boolean isServer() {
-	
-	return FMLCommonHandler.instance().getEffectiveSide().isServer();
-} 
-
-
-
-
-
-
-
-
-	public static void  sendStats(String nick, Stats stats) {
+	public static void sendStats(String nick, Stats stats)
+	{
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(110);
 		DataOutputStream dos = new DataOutputStream(bos);
 
-		try {
-            dos.writeInt(1);
+		try
+		{
+			dos.writeInt(1);
 			dos.writeInt(stats.hp);
 			dos.writeInt(stats.mp);
 			dos.writeInt(stats.def);
 			dos.writeInt(stats.str);
 			dos.writeInt(stats.dex);
-			dos.writeUTF(stats.modelName);	
+			dos.writeUTF(stats.modelName);
 			dos.writeUTF(nick);
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			e.printStackTrace();
 		}
-		
-		
+
 		Packet250CustomPayload pkt = new Packet250CustomPayload();
 		pkt.channel = "Oskar13";
 		pkt.data = bos.toByteArray();
 		pkt.length = bos.size();
 		pkt.isChunkDataPacket = false;
-		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) PacketDispatcher.sendPacketToServer(pkt);
-	
-	if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-			EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(nick);
+		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			PacketDispatcher.sendPacketToServer(pkt);
+
+		if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+		{
+			EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager()
+					.getPlayerForUsername(nick);
 			PacketDispatcher.sendPacketToPlayer(pkt, (Player) player);
 		}
 	}
 
+	@Init
+	public void load(FMLInitializationEvent event)
+	{
+		NetworkRegistry.instance().registerConnectionHandler(packetSaveData);
+	}
 
+	@PostInit
+	public void PostINIT(FMLPostInitializationEvent event)
+	{
 
-
-
-
-
-
-
-	   @Init
-	   public void load(FMLInitializationEvent event) 
-	   {
-
-		   NetworkRegistry.instance().registerConnectionHandler(packetSaveData);
-	   }
-
-	 @PostInit
-	 public void PostINIT(FMLPostInitializationEvent event) { 
-
-		  
-
-	
-		 
-	 }
-
-	@Override
-	public void playerLoggedIn(Player player, NetHandler netHandler,
-			INetworkManager manager) {
-		
-	
-		
-		
 	}
 
 	@Override
-	public String connectionReceived(NetLoginHandler netHandler,
-			INetworkManager manager) {
+	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager)
+	{
+
+	}
+
+	@Override
+	public String connectionReceived(NetLoginHandler netHandler, INetworkManager manager)
+	{
 
 		return null;
 	}
 
 	@Override
-	public void connectionOpened(NetHandler netClientHandler, String server,
-			int port, INetworkManager manager) {
+	public void connectionOpened(NetHandler netClientHandler, String server, int port, INetworkManager manager)
+	{
 
-		
 	}
 
 	@Override
-	public void connectionOpened(NetHandler netClientHandler,
-			MinecraftServer server, INetworkManager manager) {
-	
-		
+	public void connectionOpened(NetHandler netClientHandler, MinecraftServer server, INetworkManager manager)
+	{
+
 	}
 
 	@Override
-	public void connectionClosed(INetworkManager manager) {
-	
-		
+	public void connectionClosed(INetworkManager manager)
+	{
+
 	}
 
 	@Override
-	public void clientLoggedIn(NetHandler clientHandler,
-			INetworkManager manager, Packet1Login login) {
-		
-		
-		
+	public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login)
+	{
+
 	}
 
-	
 }
-
-
