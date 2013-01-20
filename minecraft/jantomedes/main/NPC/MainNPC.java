@@ -14,7 +14,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid="TMC J MainNPC", name="MainNPC", version="1.0")
 @NetworkMod(clientSideRequired=true, serverSideRequired=true)
-public class MainNPC {
+public class MainNPC{
 
         @Instance("MainNPC")
         public static MainNPC instance;
