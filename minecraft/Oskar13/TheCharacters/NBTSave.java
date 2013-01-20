@@ -8,7 +8,7 @@ import Oskar13.OskarStart;
 public class NBTSave {
 //18-1
 	public NBTSave(String nick)  {
-		
+		OskarStart.debug("PacketSaveData - ReadServre");
 		
 		EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(nick);
 		NBTTagCompound oldNBT = player.getEntityData();
