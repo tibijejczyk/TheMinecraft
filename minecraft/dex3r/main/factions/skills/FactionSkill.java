@@ -5,10 +5,12 @@ public class FactionSkill
 	private final Skill skill;
 	public int lvl;
 	public int cooldown;
+	public int timeLeft;
 	
 	public FactionSkill(Skill skill)
 	{
 		this.skill = skill;
+		timeLeft = 0;
 	}
 	
 	public int getCooldown()

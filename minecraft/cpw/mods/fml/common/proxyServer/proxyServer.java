@@ -22,13 +22,8 @@ public class proxyServer {
 
 	public void onTickInGame() {
 		
-		String[] usernames = FMLCommonHandler.instance().getMinecraftServerInstance().getAllUsernames();
-		for(int i = 0; i < usernames.length; i++) {
-			EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(usernames[i]);
-			if(Characters.getPlayer(player.username) != null) {
-				Characters.getPlayer(usernames[i]).getStats().onTick(player, player);
-			}
-		}
+		
+		
 	}
 		
 	

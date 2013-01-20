@@ -5,8 +5,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import Oskar13.OskarStart;
 
 public class Stats {
-
-	
+//Max stats = 20;
 	
 	public int hp;
 	public int mp;
@@ -17,24 +16,33 @@ public class Stats {
 	
 	public Stats()  { 
    OskarStart.debug("Init Stats");
-	hp = 50000;
-	mp = 0;
-	str = 0;
-	dex = 0;
-	def = 0;
+	hp = 20;
+	mp = 500;
+	str = 20;
+	dex = 20;
+	def = 20;
 	modelName = "Ghast";
 		
 
 	}
 	
-
-	public void onTick(EntityPlayer player, EntityPlayerMP playerMP) {
-		
-if(hp == 50000) {
 	
-	player.addChatMessage("XD");
-}
+	public float getSpeedOnGround() {
+		
+		
+		return (float)dex / 100; 
+		
 		
 	}
-}
+	
+	
+	public float getSpeedInAir() {
+		
+
+		return (float)dex / 100; 
+	}
+
+		
+	}
+
 
