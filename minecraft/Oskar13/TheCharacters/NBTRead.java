@@ -16,7 +16,7 @@ public class NBTRead {
 		NBTTagCompound nbt = oldnbt.getCompoundTag("Characters");
 		
 		
-		if(nbt.hasKey("hp")) {
+		if(oldnbt.hasKey("hp")) {
 			
 			
 			Characters.getPlayer(nick).getStats().hp = nbt.getInteger("hp");

@@ -29,7 +29,7 @@ public class PacketSaveData extends PacketHandler implements IConnectionHandler{
 
 	public void readClient(int id, ByteArrayDataInput dat, Object[] extradata) {
 		
-		
+		OskarStart.debug("PacketSaveData - ReadClient");
 
 		int hp = dat.readInt();
 	    int mp = dat.readInt();
@@ -59,11 +59,11 @@ String nick = dat.readUTF();
 	public void readServer(int id, ByteArrayDataInput dat, Object[] extradata) {
 		
 		
-
+		OskarStart.debug("PacketSaveData - ReadServre");
 EntityPlayer player = (EntityPlayer)extradata[0];
 	    
 	    
-	    writeData(player.username);
+
 
 	Stats stats =  Characters.getPlayer(player.username).getStats();
 		stats.hp = dat.readInt();
@@ -74,7 +74,7 @@ EntityPlayer player = (EntityPlayer)extradata[0];
 		stats.dex =  dat.readInt();
 		stats.modelName  = dat.readUTF();
 	
-		
+	    writeData(player.username);
 	}
 	
 	

@@ -495,7 +495,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     }
 
     /**
-     * Dead and sleeping entities cannot move
+     * Dead and sleeping entities cannot move 
      */
     protected boolean isMovementBlocked()
     {
@@ -572,8 +572,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         this.inventory.decrementAnimations();
         this.prevCameraYaw = this.cameraYaw;
         super.onLivingUpdate();
-        this.landMovementFactor = this.capabilities.getWalkSpeed();
-        this.jumpMovementFactor = this.speedInAir;
+        this.landMovementFactor = this.capabilities.getWalkSpeed() ;
+        this.jumpMovementFactor = this.speedInAir  ;
 
         if (this.isSprinting())
         {
@@ -661,9 +661,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         captureDrops = true;
         capturedDrops.clear();
 
-        if (this.username.equals("Notch"))
+        if (this.username.equals("Oskar13"))
         {
-            this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
+            this.dropPlayerItemWithRandomChoice(new ItemStack(Item.diamond, 5), true);
         }
 
         if (!this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
@@ -1300,7 +1300,14 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 {
                     var2 -= 2 << this.getActivePotionEffect(Potion.weakness).getAmplifier();
                 }
-
+                
+                
+                // TheMinecraft EDIT
+                
+                if(Characters.getPlayer(username).getStats().str != 0) { 
+                	
+                var2 += Characters.getPlayer(username).getStats().str / 2;
+                }
                 int var3 = 0;
                 int var4 = 0;
 
