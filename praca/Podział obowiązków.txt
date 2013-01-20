@@ -4,3 +4,4 @@ ID	| Nazwa 						| Kto 						| Data rozpoczęcia 	| Data zakończenia
 2. 	| Gildie 						| DeX3r 					| 01.18				|
 3. 	| System bonusów				| Oskar 					| -			        |
 4.  | Nowe moby         			| Omletowy			        | -					|
+5.	| System LVLi					| DeX3r						| -					|
