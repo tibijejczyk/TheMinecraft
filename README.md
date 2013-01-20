@@ -3,10 +3,15 @@ TheMinecraft
 
 Projekt serwerowni TheMinecraft.
 
+Jakich narzedzi uzywac?
+============
+Uzywaj tylko Git GUI z paczki http://code.google.com/p/gitextensions/
+eGIT oraz Github sa zbugowane i nie nadaja sie dla tak duzej liczby osob (Jesli jeden plik uzywa wiecej niz 1 osoba GitHub i eGit glupieja calkowicie, dlatego zalecana jest konsola).
+
+
 Jak rozwiazac Merge Conflict
 ============
-1. Bedziesz potrzebowal GitGUI i kilku inny narzedzi: http://code.google.com/p/gitextensions/ Jest to cos jak Github, tylko bez bugow, duuużo wiecej opcji, ale za to brzydkie ;)
-2. W Git GUI otwieramy nasze repo (src).
+1. W Git GUI otwieramy nasze repo (src).
 3. Na dole w Commit Message wpisz swoja wiadomosc.
 4. State changed -> Commit -> Push -> Wprowadz swoje pasy. Powinienes dostac cos takiego:
 
@@ -36,7 +41,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 Dev team:
 Oskar13 aka tibijejczyk;
-Dexter;
+DeX3r;
 Raxon;
 Omlet;
 Janto;
