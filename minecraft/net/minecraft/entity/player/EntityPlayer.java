@@ -1305,7 +1305,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                     var2 += 3 << this.getActivePotionEffect(Potion.damageBoost).getAmplifier();
                 }
                 
-                //TODO: DeX3rs Edit
+                //TODO: DeX3r Edit
                 if(faction != null && member != null)
                 {
                 	if(faction.activeSkills > 0 && member.onWar)

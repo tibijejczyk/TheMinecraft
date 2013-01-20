@@ -214,8 +214,12 @@ public class Faction
 		return fm;
 	}
 
-	public void addXp(int xp)
+	public int addXp(int xp)
 	{
+		if(lvl == 30)
+		{
+			return xp;
+		}
 		xp += xp;
 		if (stats.get(lvl).xpToLvl <= xp)
 		{
@@ -224,6 +228,7 @@ public class Faction
 			xp = 0;
 			addXp(t);
 		}
+		return 0;
 	}
 
 	public int getXp()
