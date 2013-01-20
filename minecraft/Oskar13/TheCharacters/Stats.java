@@ -1,5 +1,7 @@
 package Oskar13.TheCharacters;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import Oskar13.OskarStart;
 
 public class Stats {
@@ -26,6 +28,13 @@ public class Stats {
 	}
 	
 
+	public void onTick(EntityPlayer player, EntityPlayerMP playerMP) {
+		
+if(hp == 50000) {
 	
+	player.addChatMessage("XD");
+}
+		
+	}
 }
 

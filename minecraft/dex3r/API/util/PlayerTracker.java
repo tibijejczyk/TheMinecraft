@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import cpw.mods.fml.common.IPlayerTracker;
 import dex3r.API.Tools;
-//import dex3r.API.chunksOwning.ChunkProtection;
 
 public class PlayerTracker implements IPlayerTracker
 {
@@ -16,11 +15,11 @@ public class PlayerTracker implements IPlayerTracker
     Tools.plInfo[nr].isConnected = true;
 
     //TODO: uncomment
-//    if (Tools.chunkProtectionLoaded)
-//    {
-//      ChunkProtection.addPlayerChunkInfo(playerName);
-//      ChunkProtection.chunkSetBorderInfo(playerName, ChunkProtection.cfgDefaultBorderInfo);
-//    }
+    /*if (Tools.chunkProtectionLoaded)
+    {
+      ChunkProtection.addPlayerChunkInfo(playerName);
+      ChunkProtection.chunkSetBorderInfo(playerName, ChunkProtection.cfgDefaultBorderInfo);
+    }*/
   }
 
 	@Override
