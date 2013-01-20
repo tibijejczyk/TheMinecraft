@@ -1,10 +1,9 @@
-package powertools.shared;
+package dex3r.API.shared;
 
 public class MapLimit
 {
 	public boolean enabled;
-	public int	minX, minZ,
-				maxX, maxZ;
+	public int minX, minZ, maxX, maxZ;
 
 	public MapLimit(boolean enabled, int minX, int minZ, int maxX, int maxZ)
 	{

@@ -1,13 +1,11 @@
-package powertools.chunkprotection;
+package dex3r.API.chunkprotection;
 
 import java.util.Date;
 
-import powertools.shared.Cc;
-import powertools.shared.PowerTools;
-
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import dex3r.API.Colors;
+import dex3r.API.shared.PowerTools;
 
 public class ProtectEventHookContainer
 {
@@ -28,8 +26,8 @@ public class ProtectEventHookContainer
 			long time2 = PowerTools.date.getTime();
 			if (time2 - PowerTools.plGetTimer1(name) > 2000)
 			{
-				event.entityPlayer.sendChatToPlayer(Cc.Yellow + "This land is owned by '" + ChunkProtection.chunkOwner(dimension, x, z) + "'.");
-				event.entityPlayer.sendChatToPlayer(Cc.Yellow + "You aren't allowed to build or break here.");
+				event.entityPlayer.sendChatToPlayer(Colors.Yellow + "This land is owned by '" + ChunkProtection.chunkOwner(dimension, x, z) + "'.");
+				event.entityPlayer.sendChatToPlayer(Colors.Yellow + "You aren't allowed to build or break here.");
 				PowerTools.plSetTimer1(name, time2);
 			}
 		}

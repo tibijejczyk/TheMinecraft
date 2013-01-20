@@ -1,11 +1,10 @@
-package powertools.shared;
+package dex3r.API.shared;
 
 import java.util.List;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
-
-import powertools.chunkprotection.ChunkProtection;
+import dex3r.API.Colors;
 
 public class CommandHello extends CommandBase
 {
@@ -19,18 +18,18 @@ public class CommandHello extends CommandBase
 		return "/" + getCommandName() + " <arguments>";
 	}
 
-    public List getCommandAliases()
-    {
-        return null;
-    }
+	public List getCommandAliases()
+	{
+		return null;
+	}
 
 	public void processCommand(ICommandSender sender, String[] arguments)
 	{
-		sender.sendChatToPlayer(Cc.LightRed + "Hello World!");
+		sender.sendChatToPlayer(Colors.LightRed + "Hello World!");
 	}
 
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-    	return true;
-    }
+	public boolean canCommandSenderUseCommand(ICommandSender sender)
+	{
+		return true;
+	}
 }

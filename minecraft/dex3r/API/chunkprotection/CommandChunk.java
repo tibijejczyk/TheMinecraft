@@ -1,4 +1,4 @@
-package powertools.chunkprotection;
+package dex3r.API.chunkprotection;
 
 import java.util.List;
 
@@ -7,9 +7,8 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChunkCoordinates;
-
-import powertools.shared.Cc;
-import powertools.shared.PowerTools;
+import dex3r.API.Colors;
+import dex3r.API.shared.PowerTools;
 
 public class CommandChunk extends CommandBase
 {
@@ -68,26 +67,26 @@ public class CommandChunk extends CommandBase
 			String owner = ChunkProtection.chunkOwner(d, x, z);
 			if ( !owner.equals("") )
 			{
-				sender.sendChatToPlayer(Cc.Yellow + "This chunk is claimed by: " + owner);
+				sender.sendChatToPlayer(Colors.Yellow + "This chunk is claimed by: " + owner);
 				String players = ChunkProtection.chunkGetPlayers(d, x, z);
 				if ( !players.equals("") )
-					sender.sendChatToPlayer(Cc.Yellow + "Players allowed to build here: " + players);
+					sender.sendChatToPlayer(Colors.Yellow + "Players allowed to build here: " + players);
 			}
 			else
 			{
-				sender.sendChatToPlayer(Cc.Yellow + "This chunk is currently not claimed");
+				sender.sendChatToPlayer(Colors.Yellow + "This chunk is currently not claimed");
 			}
-			String message = Cc.Yellow + "Use " + Cc.White + "/chunk ";
+			String message = Colors.Yellow + "Use " + Colors.White + "/chunk ";
 			if ( ChunkProtection.cfgAllPlayersCanClaim || ChunkProtection.isPlayerOp(playerName) )
 				message += "[claim]|";
 			message += "[unclaim]";
 			sender.sendChatToPlayer(message);
-			sender.sendChatToPlayer(Cc.Yellow + "Or " + Cc.White + "/chunk [add]|[remove] [player1] [player2] ..");
-			sender.sendChatToPlayer(Cc.Yellow + "Display info at border: " + Cc.White + "/chunk info [on|off]");
+			sender.sendChatToPlayer(Colors.Yellow + "Or " + Colors.White + "/chunk [add]|[remove] [player1] [player2] ..");
+			sender.sendChatToPlayer(Colors.Yellow + "Display info at border: " + Colors.White + "/chunk info [on|off]");
 			if ( ChunkProtection.isPlayerOp(playerName) )
 			{
-				sender.sendChatToPlayer(Cc.Yellow + "Display player information: " + Cc.White + "/chunk playerinfo [playername]");
-				sender.sendChatToPlayer(Cc.Yellow + "Set maximum chunks to claim for player: " + Cc.White + "/chunk maxchunks [playername] [maxchunks]");
+				sender.sendChatToPlayer(Colors.Yellow + "Display player information: " + Colors.White + "/chunk playerinfo [playername]");
+				sender.sendChatToPlayer(Colors.Yellow + "Set maximum chunks to claim for player: " + Colors.White + "/chunk maxchunks [playername] [maxchunks]");
 			}
 		}
 	}
@@ -114,15 +113,15 @@ public class CommandChunk extends CommandBase
 		{
 			b = ChunkProtection.chunkClaim(dimension, x, z, claimForPlayer );
 		}
-		String message = Cc.Yellow + "Dim" + dimension;
-		if (dimension == 0) message = Cc.Yellow + "Overworld"; 
-		if (dimension == -1) message = Cc.Yellow + "Nether"; 
+		String message = Colors.Yellow + "Dim" + dimension;
+		if (dimension == 0) message = Colors.Yellow + "Overworld"; 
+		if (dimension == -1) message = Colors.Yellow + "Nether"; 
 		message += " x:" + x + " z:" + z;
 		if (b == -1)
 		{
 			ChunkProtection.chunkSetLastVisitNow(dimension, x, z);
 			ChunkProtection.writeChunkInfoToFile();
-			message += " is successfully claimed.";
+			message += " is suColorsessfully claimed.";
 			if (claimForPlayer.equals(""))
 			{
 				ChunkProtection.setChunkOwnerMessage(playerName, playerName);
@@ -152,14 +151,14 @@ public class CommandChunk extends CommandBase
 
 		String name = sender.getCommandSenderName();
 		byte b = ChunkProtection.chunkUnClaim(dimension, x, z, name);
-		String message = Cc.Yellow + "Dim" + dimension;
-		if (dimension == 0) message = Cc.Yellow + "Overworld"; 
-		if (dimension == -1) message = Cc.Yellow + "Nether"; 
+		String message = Colors.Yellow + "Dim" + dimension;
+		if (dimension == 0) message = Colors.Yellow + "Overworld"; 
+		if (dimension == -1) message = Colors.Yellow + "Nether"; 
 		message += " x:" + x + " z:" + z;
 		if (b == -1)
 		{
 			ChunkProtection.writeChunkInfoToFile();
-			message += " is successfully unclaimed.";
+			message += " is suColorsessfully unclaimed.";
 			ChunkProtection.setChunkOwnerMessage(name, "");
 		}
 		if (b == 1) message += " couln't be unclaimed. It wasn't claimed.";
@@ -171,7 +170,7 @@ public class CommandChunk extends CommandBase
 		if (b == 3)
 		{
 			ChunkProtection.writeChunkInfoToFile();
-			message += " is " + Cc.LightRed + "successfully unclaimed by op.";
+			message += " is " + Colors.LightRed + "suColorsessfully unclaimed by op.";
 		}
 		sender.sendChatToPlayer(message);
 	}
@@ -182,7 +181,7 @@ public class CommandChunk extends CommandBase
 		if (arguments.length == 2 && ChunkProtection.isPlayerOp(playerName))
 			playerName = arguments[1];
 		ChunkProtection.chunkUnClaimAll(playerName);
-		sender.sendChatToPlayer(Cc.Yellow + "Unclaimed all chunks of " + playerName);
+		sender.sendChatToPlayer(Colors.Yellow + "Unclaimed all chunks of " + playerName);
 	}	
 
 	public void chunkAddPlayers(ICommandSender sender, String[]arguments)
@@ -197,8 +196,8 @@ public class CommandChunk extends CommandBase
 		{
 			boolean b;
 			String message = "";
-			if ( ChunkProtection.isPlayerOp(playerName) ) message += Cc.LightRed + "Op ";
-			message += Cc.Yellow + "Added player(s): ";
+			if ( ChunkProtection.isPlayerOp(playerName) ) message += Colors.LightRed + "Op ";
+			message += Colors.Yellow + "Added player(s): ";
 			for (int i=1; i<arguments.length; i++)
 			{
 				b = ChunkProtection.chunkAddPlayer(d, x, z, playerName, arguments[i]);
@@ -209,7 +208,7 @@ public class CommandChunk extends CommandBase
 		}
 		else
 		{
-			sender.sendChatToPlayer(Cc.Yellow + "You can only add players to a chunk you own.");
+			sender.sendChatToPlayer(Colors.Yellow + "You can only add players to a chunk you own.");
 		}
 	}
 	public void chunkRemovePlayers(ICommandSender sender, String[]arguments)
@@ -224,8 +223,8 @@ public class CommandChunk extends CommandBase
 		{
 			boolean b;
 			String message = "";
-			if ( ChunkProtection.isPlayerOp(playerName) ) message += Cc.LightRed + "Op ";
-			message += Cc.Yellow + "Removed player(s): ";
+			if ( ChunkProtection.isPlayerOp(playerName) ) message += Colors.LightRed + "Op ";
+			message += Colors.Yellow + "Removed player(s): ";
 			for (int i=1; i<arguments.length; i++)
 			{
 				b = ChunkProtection.chunkRemovePlayer(d, x, z, playerName, arguments[i]);
@@ -236,7 +235,7 @@ public class CommandChunk extends CommandBase
 		}
 		else
 		{
-			sender.sendChatToPlayer(Cc.Yellow + "You can only remove players from a chunk you own.");
+			sender.sendChatToPlayer(Colors.Yellow + "You can only remove players from a chunk you own.");
 		}
 	}
 	public void chunkClearPlayers(ICommandSender sender)
@@ -251,13 +250,13 @@ public class CommandChunk extends CommandBase
 		{
 			boolean b = ChunkProtection.chunkClearPlayerList(d, x, z, playerName);
 			String message = "";
-			if ( ChunkProtection.isPlayerOp(playerName) ) message += Cc.LightRed + "Op ";
-			message += Cc.Yellow + "Cleared player list for this chunk.";
+			if ( ChunkProtection.isPlayerOp(playerName) ) message += Colors.LightRed + "Op ";
+			message += Colors.Yellow + "Cleared player list for this chunk.";
 			if (b) sender.sendChatToPlayer(message);
 		}
 		else
 		{
-			sender.sendChatToPlayer(Cc.Yellow + "You can only remove players from a chunk you own.");
+			sender.sendChatToPlayer(Colors.Yellow + "You can only remove players from a chunk you own.");
 		}
 	}
 	public void chunkSetBorderInfo(ICommandSender sender, String[]arguments)
@@ -266,7 +265,7 @@ public class CommandChunk extends CommandBase
 		String message;
 		if (arguments.length > 1)
 		{
-			message = Cc.Yellow + "Border info turned: ";
+			message = Colors.Yellow + "Border info turned: ";
 			if ( arguments[1].equals("on") )
 			{
 				ChunkProtection.chunkSetBorderInfo(playerName, true);
@@ -282,7 +281,7 @@ public class CommandChunk extends CommandBase
 		else
 		{
 			boolean info = ChunkProtection.chunkGetBorderInfo(playerName);
-			message = Cc.Yellow + "Border info is currently set: ";
+			message = Colors.Yellow + "Border info is currently set: ";
 			if (info)
 				message += "on";
 			else
@@ -299,7 +298,7 @@ public class CommandChunk extends CommandBase
 			String playerName = arguments[1];
 			int maxChunks = ChunkProtection.getMaxChunksPerPlayer(playerName);
 			int chunksOwned = ChunkProtection.getChunksOwned(playerName);
-			message = Cc.Yellow + "Info for player '" +  playerName + "', maxChunksAllowed: " + maxChunks
+			message = Colors.Yellow + "Info for player '" +  playerName + "', maxChunksAllowed: " + maxChunks
 					+ ", numberOfChunksOwned: " + chunksOwned;
 		}
 		else if (arguments.length == 1)
@@ -307,12 +306,12 @@ public class CommandChunk extends CommandBase
 			String playerName = sender.getCommandSenderName();
 			int maxChunks = ChunkProtection.getMaxChunksPerPlayer(playerName);
 			int chunksOwned = ChunkProtection.getChunksOwned(playerName);
-			message = Cc.Yellow + "Info for player '" +  playerName + "', maxChunksAllowed: " + maxChunks
+			message = Colors.Yellow + "Info for player '" +  playerName + "', maxChunksAllowed: " + maxChunks
 					+ ", numberOfChunksOwned: " + chunksOwned;
 		}
 		else
 		{
-			message = Cc.Yellow + "Use: " + Cc.White + "/chunk playerinfo [playername]";
+			message = Colors.Yellow + "Use: " + Colors.White + "/chunk playerinfo [playername]";
 		}
 		sender.sendChatToPlayer(message);
 	}
@@ -326,11 +325,11 @@ public class CommandChunk extends CommandBase
 			int maxChunks = Integer.valueOf(arguments[2]);
 			ChunkProtection.setMaxChunksForPlayer(playerName, maxChunks);
 			ChunkProtection.writePlayerChunkInfoToFile();
-			message = Cc.Yellow + "Player '" + playerName + "' can now claim " + Cc.White + maxChunks + Cc.Yellow + " chunks.";
+			message = Colors.Yellow + "Player '" + playerName + "' can now claim " + Colors.White + maxChunks + Colors.Yellow + " chunks.";
 		}
 		else
 		{
-			message = Cc.Yellow + "Use: " + Cc.White + "/chunk maxchunks [playername] [maxchunks]";
+			message = Colors.Yellow + "Use: " + Colors.White + "/chunk maxchunks [playername] [maxchunks]";
 		}
 		sender.sendChatToPlayer(message);
 	}

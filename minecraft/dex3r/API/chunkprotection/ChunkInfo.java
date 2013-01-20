@@ -1,8 +1,8 @@
-package powertools.chunkprotection;
+package dex3r.API.chunkprotection;
 
 import java.util.Date;
 
-import powertools.shared.PowerTools;
+import dex3r.API.shared.PowerTools;
 
 public class ChunkInfo
 {

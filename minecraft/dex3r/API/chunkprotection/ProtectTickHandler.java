@@ -1,15 +1,13 @@
-package powertools.chunkprotection;
+package dex3r.API.chunkprotection;
 
 import java.util.EnumSet;
 
 import net.minecraft.entity.player.EntityPlayerMP;
-
-import powertools.shared.Cc;
-import powertools.shared.DimChunkCoordinates;
-import powertools.shared.PowerTools;
-
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
+import dex3r.API.Colors;
+import dex3r.API.shared.DimChunkCoordinates;
+import dex3r.API.shared.PowerTools;
 
 public class ProtectTickHandler implements IScheduledTickHandler
 {
@@ -41,9 +39,9 @@ public class ProtectTickHandler implements IScheduledTickHandler
 			{
 				if ( ChunkProtection.chunkGetBorderInfo(playerName) )
 				{
-					if (c == 0) player.sendChatToPlayer(Cc.Yellow + "Unclaimed territory");
-					if (c == 1 || c==3) player.sendChatToPlayer(Cc.Yellow + "This land is owned by '" + owner + "'");
-					if (c == 2) player.sendChatToPlayer(Cc.Yellow + "You own this land");
+					if (c == 0) player.sendChatToPlayer(Colors.Yellow + "Unclaimed territory");
+					if (c == 1 || c==3) player.sendChatToPlayer(Colors.Yellow + "This land is owned by '" + owner + "'");
+					if (c == 2) player.sendChatToPlayer(Colors.Yellow + "You own this land");
 				}
 			}
 			ChunkProtection.setChunkOwnerMessage(playerName, owner);

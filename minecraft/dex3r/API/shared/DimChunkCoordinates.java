@@ -1,14 +1,14 @@
-package powertools.shared;
+package dex3r.API.shared;
 
 public class DimChunkCoordinates
 {
 	public static int d;
 	public static int x;
 	public static int z;
-	
+
 	public DimChunkCoordinates()
 	{
-		
+
 	}
 
 	public DimChunkCoordinates(int d, int x, int z)

@@ -1,4 +1,4 @@
-package powertools.shared;
+package dex3r.API.shared;
 
 public class PlayerInfo
 {
@@ -18,7 +18,7 @@ public class PlayerInfo
 
 	public long time1;
 	public long time2;
-	
+
 	public byte chatMode; // 0=normal, 1=player, 2=whisper
 	public String chatToPlayers;
 
@@ -32,7 +32,7 @@ public class PlayerInfo
 		this.loginPosX = 0;
 		this.loginPosY = 0;
 		this.loginPosZ = 0;
-		
+
 		this.currentChunkCoordinates = new DimChunkCoordinates(0, 0, 0);
 		this.lastOwnerMessage = "";
 		this.chunksOwned = 0;
@@ -40,7 +40,7 @@ public class PlayerInfo
 
 		this.time1 = PowerTools.date.getTime();
 		this.time2 = this.time1;
-		
+
 		this.chatMode = 0;
 		this.chatToPlayers = "";
 	}

@@ -1,9 +1,6 @@
-package powertools.chunkprotection;
+package dex3r.API.chunkprotection;
 
 import java.util.EnumSet;
-
-import powertools.shared.Cc;
-import powertools.shared.PowerTools;
 
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;

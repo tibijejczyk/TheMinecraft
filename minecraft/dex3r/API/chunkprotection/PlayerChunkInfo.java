@@ -1,6 +1,6 @@
-package powertools.chunkprotection;
+package dex3r.API.chunkprotection;
 
-import powertools.shared.DimChunkCoordinates;
+import dex3r.API.shared.DimChunkCoordinates;
 
 public class PlayerChunkInfo
 {

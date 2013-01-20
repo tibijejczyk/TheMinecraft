@@ -1,12 +1,9 @@
-package powertools.shared;
-
-import java.net.SocketAddress;
+package dex3r.API.shared;
 
 import net.minecraft.entity.player.EntityPlayer;
-
-import powertools.chunkprotection.ChunkProtection;
-import powertools.login.PowerLogin;
 import cpw.mods.fml.common.IPlayerTracker;
+import dex3r.API.Colors;
+import dex3r.API.chunkprotection.ChunkProtection;
 
 public class PowerPlayerTracker implements IPlayerTracker
 {
@@ -19,20 +16,24 @@ public class PowerPlayerTracker implements IPlayerTracker
 		int nr = PowerTools.getNumberForPlayerName(playerName);
 		PowerTools.plInfo[nr].isConnected = true;
 
-		if (PowerTools.powerLoginLoaded)
+		/*if (PowerTools.powerLoginLoaded)
 		{
-			if (playerName.equals("Server") ) player.setDead(); // TODO find method to kick this player instead.
+			if (playerName.equals("Server"))
+				player.setDead(); 
+			// TODO find method to kick this player
+									// instead.
 			PowerLogin.plSetLoginPos(playerName, player.posX, player.posY, player.posZ);
-			if (PowerLogin.plGetRegisterStatus(playerName) )
+			if (PowerLogin.plGetRegisterStatus(playerName))
 			{
-				player.sendChatToPlayer(Cc.Yellow + "Welcome back, " + playerName + ". Use " + Cc.White + "/login [password]");
-			}
-			else
+				player.sendChatToPlayer(Colors.Yellow + "Welcome back, " + playerName + ". Use " + Colors.White
+						+ "/login [password]");
+			} else
 			{
-				player.sendChatToPlayer(Cc.Yellow + "You need to be registerd and logged in to play on this server.");
-				player.sendChatToPlayer(Cc.Yellow + "Use " + Cc.White + "/register [new password]" + Cc.Yellow + " or " + Cc.White + "/login [password]");
+				player.sendChatToPlayer(Colors.Yellow + "You need to be registerd and logged in to play on this server.");
+				player.sendChatToPlayer(Colors.Yellow + "Use " + Colors.White + "/register [new password]" + Colors.Yellow + " or "
+						+ Colors.White + "/login [password]");
 			}
-		}
+		}*/
 
 		if (PowerTools.chunkProtectionLoaded)
 		{
@@ -49,20 +50,25 @@ public class PowerPlayerTracker implements IPlayerTracker
 			String playerName = player.getCommandSenderName();
 			int nr = PowerTools.getNumberForPlayerName(playerName);
 			PowerTools.plInfo[nr].isConnected = false;
-			if (PowerTools.powerLoginLoaded) PowerLogin.plLogout(playerName);
+			/*if (PowerTools.powerLoginLoaded)
+			{
+				PowerLogin.plLogout(playerName);
+			}*/
 		}
 	}
 
 	@Override
-	public void onPlayerChangedDimension(EntityPlayer player) {
+	public void onPlayerChangedDimension(EntityPlayer player)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void onPlayerRespawn(EntityPlayer player) {
+	public void onPlayerRespawn(EntityPlayer player)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
