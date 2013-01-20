@@ -3,6 +3,7 @@ package dex3r.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.util.Facing;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.Init;
@@ -16,6 +17,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.proxyServer.proxyServer;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
+import dex3r.main.factions.Faction;
 
 @Mod(modid = "DexTheMc", name = "DeX3r TheMinecraft MOD", version = "0.1.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
@@ -48,6 +51,11 @@ public class DexMain
 	@Init
 	public void load(FMLInitializationEvent event)
 	{
+		if(event.getSide() == Side.SERVER)
+		{
+			Faction.init();
+		}
+		
 		// ----------
 		// Blocks:
 //		LanguageRegistry.addName(customBlock , "Custom block");
