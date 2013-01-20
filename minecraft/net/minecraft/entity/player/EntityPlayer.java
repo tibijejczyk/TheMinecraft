@@ -9,6 +9,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Iterator;
 import java.util.List;
+
+import dex3r.main.factions.Faction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
@@ -171,6 +173,10 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      * An instance of a fishing rod's hook. If this isn't null, the icon image of the fishing rod is slightly different
      */
     public EntityFishHook fishEntity = null;
+    
+    //TODO: DeX3rs EDIT
+    //Zrobiony w celach wydajnoœciowych
+    public Faction faction;
 
     public EntityPlayer(World par1World)
     {
@@ -1295,6 +1301,8 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 {
                     var2 += 3 << this.getActivePotionEffect(Potion.damageBoost).getAmplifier();
                 }
+                
+                //TODO: DeX3rs Edit
 
                 if (this.isPotionActive(Potion.weakness))
                 {
