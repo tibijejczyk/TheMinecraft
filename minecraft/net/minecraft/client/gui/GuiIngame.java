@@ -1,8 +1,11 @@
 package net.minecraft.client.gui;
 
+import Oskar13.Kolory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.block.Block;
@@ -60,6 +63,57 @@ public class GuiIngame extends Gui
     /**
      * Render the ingame overlay with quick icon bar, ...
      */
+    
+    
+	  static ArrayList Notification = new ArrayList();
+	    public static class Notification
+	    {
+  // type 0 is admin chat on center top
+	    	// type 1 is mod chat on right top 
+	    	   // oskar
+  
+	        private int time;
+	        String title;
+	        String message;
+	        private int type;
+
+	        public Notification(int i, String s, String s1,int a)
+	        {
+	            time = i;
+	            title = s;
+	            message = s1;
+	            type = a;
+	        }
+	    }
+	    
+	    
+	    // Jwjgl 2d
+	    public static void set2DMode(float f, float f1, float f2, float f3)
+	    {
+	        GL11.glDisable(2929 /*GL_DEPTH_TEST*/);
+	        GL11.glMatrixMode(5889 /*GL_PROJECTION*/);
+	        GL11.glPushMatrix();
+	        GL11.glLoadIdentity();
+	        GL11.glOrtho(f, f1, f3, f2, -100D, 100D);
+	        GL11.glMatrixMode(5888 /*GL_MODELVIEW0_ARB*/);
+	        GL11.glPushMatrix();
+	        GL11.glLoadIdentity();
+	    }
+        // Jwjgl 3d
+	    public static void set3DMode()
+	    {
+	        GL11.glMatrixMode(5889 /*GL_PROJECTION*/);
+	        GL11.glPopMatrix();
+	        GL11.glMatrixMode(5888 /*GL_MODELVIEW0_ARB*/);
+	        GL11.glPopMatrix();
+	        GL11.glEnable(2929 /*GL_DEPTH_TEST*/);
+	    }
+	    
+	    
+	    public static void addNote(String name, String message, int type)
+	    {
+	    	Notification.add(new Notification((int)System.currentTimeMillis(),name ,message, type));
+	    }
     public void renderGameOverlay(float par1, boolean par2, int par3, int par4)
     {
         ScaledResolution var5 = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
@@ -69,6 +123,73 @@ public class GuiIngame extends Gui
         this.mc.entityRenderer.setupOverlayRendering();
         GL11.glEnable(GL11.GL_BLEND);
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ///////////////////////////////////////TheMinecraft edit - start
+ set2DMode(0.0F, mc.displayWidth, 0.0F, mc.displayHeight);
+        
+        GL11.glEnable(3042 /*GL_BLEND*/);
+        GL11.glBlendFunc(770, 771);
+        GL11.glPushMatrix();
+        GL11.glScalef(2F, 2F, 2F);
+        Iterator iterator1 = Notification.iterator();
+        
+        int k5 = 5;
+        while(iterator1.hasNext()) 
+        {
+            Notification notification = (Notification)iterator1.next();
+            long l3 = (int)(System.currentTimeMillis() - (long)notification.time);
+            if(l3 > 3333L)
+            {
+                iterator1.remove();
+            } else
+            {
+                float f3 = 1.0F - (float)l3 / 3333F;
+                f3 *= 10F;
+                if(f3 > 1.0F)
+                {
+                    f3 = 1.0F;
+                }
+                if(f3 < 0.14F)
+                {
+                    f3 = 0.14F;
+                }
+                f3 *= f3;
+                String s1 = notification.title == null || notification.title.trim().length() <= 0 ? "" : (new StringBuilder()).append(notification.title).append(": ").toString();
+         
+     
+        	   // Admin chat
+         this.drawCenteredString(var8, Kolory.zielony + s1 + Kolory.czerwony + notification.message, mc.displayWidth / 2  - (s1.length() / 2), k5, 0xffffff);
+           
+                k5 += 7;
+            }
+        }
+        
+        GL11.glPopMatrix();
+   
+        set3DMode();
+        
+        /////////////////////////////////////////////////TheMinecraft edit - stop
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         if (Minecraft.isFancyGraphicsEnabled())
         {
             this.renderVignette(this.mc.thePlayer.getBrightness(par1), var6, var7);

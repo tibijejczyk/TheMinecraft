@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import Oskar13.APIs.ModChat;
+
 import Oskar13.TheCharacters.Stats;
 import Oskar13.commands.CommandMessage;
 
@@ -68,7 +68,9 @@ public class OskarStart implements IConnectionHandler
 
 	// PACKETS
 	public PacketSaveData packetSaveData = new PacketSaveData();
-
+    
+    
+    
 	private static boolean debug = true;
 
 	public static void debug(String deg)
