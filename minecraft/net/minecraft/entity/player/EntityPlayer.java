@@ -11,6 +11,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import dex3r.main.factions.Faction;
+import dex3r.main.factions.FactionMember;
+import dex3r.main.factions.skills.Skill;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
@@ -177,6 +179,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     //TODO: DeX3rs EDIT
     //Zrobiony w celach wydajnoœciowych
     public Faction faction;
+    public FactionMember member;
 
     public EntityPlayer(World par1World)
     {
@@ -1303,6 +1306,13 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 }
                 
                 //TODO: DeX3rs Edit
+                if(faction != null && member != null)
+                {
+                	if(faction.activeSkills > 0 && member.onWar)
+                	{
+                		var2 += faction.getSkill(Skill.Strenght).getPower();
+                	}
+                }
 
                 if (this.isPotionActive(Potion.weakness))
                 {

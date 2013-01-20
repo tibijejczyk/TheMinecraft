@@ -30,6 +30,7 @@ public class Faction
 	private int xp;
 	public String name;
 	public FactionSkill[] skills;
+	public int activeSkills;
 
 	public Faction(String owner, String name)
 	{
@@ -42,6 +43,7 @@ public class Faction
 		enemies = new ArrayList<String>();
 		allies = new ArrayList<String>();
 		skills = new FactionSkill[4];
+		activeSkills = 0;
 	}
 
 	public static void init()
@@ -60,8 +62,27 @@ public class Faction
 		}
 		return null;
 	}
+	
+	public void tick()
+	{
+		if(activeSkills > 0)
+		{
+			for(int i = 0; i < skills.length; i++)
+			{
+				skills[i].tick();
+				if(skills[i].timeLeft > 0)
+				{
+					skills[i].timeLeft--;
+					if(skills[i].timeLeft == 0)
+					{
+						activeSkills--;
+					}
+				}
+			}
+		}
+	}
 
-	private FactionSkill getSkill(Skill skill)
+	public FactionSkill getSkill(Skill skill)
 	{
 		for (int i = 0; i < skills.length; i++)
 		{
@@ -106,6 +127,7 @@ public class Faction
 				}
 			}
 		}
+		activeSkills++;
 		s.cooldown = s.getCooldown();
 	}
 
