@@ -33,11 +33,14 @@ public static boolean connect = false;
 			case CLIENT: {
 				switch(id) {
 					case 1: OskarStart.instance.packetSaveData.readClient(id, dat, extradata); break;
+					
 			
 				}
 				break;
 			}
 		default:
+			
+			OskarStart.debug("Packet dont exist");
 			break;
 		}
 
