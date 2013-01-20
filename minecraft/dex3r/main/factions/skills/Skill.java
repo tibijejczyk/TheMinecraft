@@ -14,6 +14,7 @@ public class Skill
 	{
 		this.name = name;
 		this.iconIndex = iconIndex;
+		this.name = "hahahaha";
 	}
 	
 	static
