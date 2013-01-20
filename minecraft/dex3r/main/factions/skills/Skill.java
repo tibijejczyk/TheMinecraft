@@ -18,6 +18,6 @@ public class Skill
 	
 	static
 	{
-		Strenght = new Skill("G: Si³a", 0, new int[] {666, 666, 110, 105, 100, 95, 90}, new int[] {3, 4, 5, 5, 6, 7, 8}, new int[] {2, 3, 4, 5, 6, 7, 8});
+		Strenght = new Skill("G: Sila", 0, new int[] {666, 666, 110, 105, 100, 95, 90}, new int[] {3, 4, 5, 5, 6, 7, 8}, new int[] {2, 3, 4, 5, 6, 7, 8});
 	}
 }
