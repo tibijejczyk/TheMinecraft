@@ -14,6 +14,8 @@ public class Stats {
 	public int  def;
 	public String modelName;
 	
+	
+	
 	public Stats()  { 
    OskarStart.debug("Init Stats");
 	hp = 20;

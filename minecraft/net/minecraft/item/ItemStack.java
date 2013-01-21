@@ -1,9 +1,15 @@
 package net.minecraft.item;
 
+import Oskar13.Kolory;
+
+import Oskar13.ItemBonus.ItemBonus;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentDurability;
@@ -40,7 +46,7 @@ public final class ItemStack
 
     /** Damage dealt to the item or number of use. Raise when using items. */
     private int itemDamage;
-
+    
     /** Item frame this stack is on, or null if not on an item frame. */
     private EntityItemFrame itemFrame;
 
@@ -81,6 +87,8 @@ public final class ItemStack
         this.itemID = par1;
         this.stackSize = par2;
         this.itemDamage = par3;
+        //TODO Oskar13 EDIT
+ 
     }
 
     public static ItemStack loadItemStackFromNBT(NBTTagCompound par0NBTTagCompound)
@@ -115,6 +123,8 @@ public final class ItemStack
     /**
      * Returns the object corresponding to the stack.
      */
+    
+    
     public Item getItem()
     {
         return Item.itemsList[this.itemID];
@@ -345,9 +355,11 @@ public final class ItemStack
     /**
      * Returns the damage against a given entity.
      */
+    //TODO Oskar13 EDIT
     public int getDamageVsEntity(Entity par1Entity)
     {
-        return Item.itemsList[this.itemID].getDamageVsEntity(par1Entity);
+        ItemBonus bonus = new ItemBonus(this);
+        return Item.itemsList[this.itemID].getDamageVsEntity(par1Entity) + bonus.getSTR() ;
     }
 
     /**
@@ -541,6 +553,12 @@ public final class ItemStack
 
     @SideOnly(Side.CLIENT)
 
+    
+    //TODO Oskar13 EDIT
+    public NBTTagList bonus()
+    {
+        return this.stackTagCompound == null ? null : (NBTTagList)this.stackTagCompound.getTag("bonus");
+    }
     /**
      * Return a list of strings containing information about the item
      */
@@ -600,6 +618,24 @@ public final class ItemStack
                 }
             }
 
+            
+            //TODO Oskar13 EDIT
+            NBTTagList intOfBounus = this.bonus();
+            
+            if (intOfBounus != null) {
+            	
+            	
+                for (int var7 = 0; var7 <  intOfBounus.tagCount(); ++var7)
+                {
+                    short id = ((NBTTagCompound) intOfBounus.tagAt(var7)).getShort("id");
+                    short force = ((NBTTagCompound) intOfBounus.tagAt(var7)).getShort("force");
+                      
+                    
+                     var3.add(ItemBonus.NamesOfBonus(id, force));
+                }
+            }
+            
+            
             if (this.stackTagCompound.hasKey("display"))
             {
                 NBTTagCompound var11 = this.stackTagCompound.getCompoundTag("display");
@@ -681,6 +717,44 @@ public final class ItemStack
         var3.appendTag(var4);
     }
 
+    
+    
+    //TODO: Oskar13 EDIT
+    public  void addBonus(Map par0Map)
+    {
+        NBTTagList var2 = new NBTTagList();
+        Iterator var3 = par0Map.keySet().iterator();
+
+        while (var3.hasNext())
+        {
+            int var4 = ((Integer)var3.next()).intValue();
+            NBTTagCompound var5 = new NBTTagCompound();
+            var5.setShort("id", (short)var4);
+            var5.setShort("force", (short)((Integer)par0Map.get(Integer.valueOf(var4))).intValue());
+            var2.appendTag(var5);
+        }
+
+        {
+            if (this.stackTagCompound == null)
+            {
+                this.setTagCompound(new NBTTagCompound());
+            }
+
+            if (!this.stackTagCompound.hasKey("bonus"))
+            {
+                this.stackTagCompound.setTag("bonus", new NBTTagList("bonus"));
+            }
+    }
+    }
+    
+    
+    
+    //TODO Oskar13 EDIT
+    public boolean isItemBonus()
+    {
+        return this.stackTagCompound != null && this.stackTagCompound.hasKey("bonus");
+    }
+    
     /**
      * True if the item has enchantment data
      */

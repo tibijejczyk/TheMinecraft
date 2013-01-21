@@ -9,6 +9,7 @@ import java.util.Map;
 
 
 import Oskar13.TheCharacters.Stats;
+import Oskar13.commands.CommandBonus;
 import Oskar13.commands.CommandMessage;
 
 import net.java.games.util.plugins.Plugin;
@@ -131,8 +132,9 @@ debug("Packet stats was send");
 	@ServerStarted
 	public void onServerStarted(FMLServerStartedEvent event) {
 		CommandHandler handler = (CommandHandler) MinecraftServer.getServer().getCommandManager();
+		
 		handler.registerCommand(new  CommandMessage());
-		  
+		handler.registerCommand(new  CommandBonus());
 	}
 
 	

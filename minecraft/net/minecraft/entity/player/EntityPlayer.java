@@ -1,6 +1,7 @@
 package net.minecraft.entity.player;
 
 import Oskar13.OskarStart;
+import Oskar13.ItemBonus.ItemBonus;
 import Oskar13.TheCharacters.Characters;
 import Oskar13.TheCharacters.Stats;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -180,9 +181,14 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     //Zrobiony w celach wydajnoœciowych
     public Faction faction;
     public FactionMember member;
-
+   
+    //TODO Oskar13 EDIT
+    //Zrobiony bo mi sie nie chce rozsze¿aæ <3
+	ItemStack item;
+	ItemBonus bonus;
     public EntityPlayer(World par1World)
     {
+    	//TODO Oskar13 edit
         super(par1World);
         this.inventoryContainer = new ContainerPlayer(this.inventory, !par1World.isRemote, this);
         this.openContainer = this.inventoryContainer;
@@ -198,15 +204,26 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         this.fireResistance = 20;
         this.texture = "/mob/char.png";
     //	Characters.addPlayer(username, new Characters(this, new Stats())); -Do not use
+        
+    
     }
 @Override
     public int getMaxHealth()
     {
+ 
+	//TODO Oskar13 edit
 		int hp = 20;
 		if(Characters.getPlayer(this.username) != null)
 		{
-
+                      
 			hp = Characters.getPlayer(this.username).stats.hp;
+			
+	
+			
+			if(item != null) { 
+				
+				hp += bonus.getHP();
+			}
 		}
 		return hp;
     }
@@ -915,6 +932,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
             NBTTagList var3 = par1NBTTagCompound.getTagList("EnderItems");
             this.theInventoryEnderChest.loadInventoryFromNBT(var3);
         }
+        
+        bonus = new ItemBonus(item);
+        item  = inventory.getCurrentItem();
     }
 
     /**
@@ -1133,7 +1153,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      */
     public int getTotalArmorValue()
     {
-        return this.inventory.getTotalArmorValue() + Characters.getPlayer(username).getStats().def;
+        return this.inventory.getTotalArmorValue() + Characters.getPlayer(username).getStats().def +  bonus.getDEF();
     }
 
     public float func_82243_bO()
@@ -1320,8 +1340,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                 }
                 
                 
-                // TheMinecraft EDIT
-                
+                //TODO Oskar13 Edit
                 if(Characters.getPlayer(username).getStats().str != 0) { 
                 	
                 var2 += Characters.getPlayer(username).getStats().str / 2;
@@ -1589,7 +1608,7 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     public void wakeUpPlayer(boolean par1, boolean par2, boolean par3)
     {
 
-    		
+    		//TODO: Oskar13 Edit
     this.setSize(Characters.getModel(username).width,Characters.getModel(username).height);
     		
  
