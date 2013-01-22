@@ -11,6 +11,8 @@ Stosujemy sie do oglnej konwencji pisania w jezyku Java (http://javastart.pl/pod
 Klamry stawiamy w nowych, pustych liniach. Nie zmienamy jednak pod zadnym pozorem formatowania oryginalych klas Minecrafta!!!
 Gotowe ustawienia formatowania do Eclipse: http://www.sendspace.com/file/8c82dx
 
+Gdy edytujesz klasy bazowe (a staraj robic sie to jak najrzadziej) w miare mozliwosci dopisuj wieksze komentarze, oraz zaznaczaj obszar edycji.
+
 Jak pushować i rozwiazac Merge Conflict
 ============
 https://github.com/tibijejczyk/TheMinecraft/wiki/Jak-pushowa%C4%87-i-rozwi%C4%85za%C4%87-Merge-Conflict
