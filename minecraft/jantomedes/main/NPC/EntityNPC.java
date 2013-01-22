@@ -1,5 +1,6 @@
 package jantomedes.main.NPC;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +11,7 @@ import net.minecraft.world.World;
 public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTaskListener{
 
 	/**Typ, od którego mo¿e zale¿eæ np. kszta³t modelu, tekstura, zachowanie itp.
-	 * Wszystkie typy s¹ zapisane i bêd¹ dodawane w klasie NPCTypes w jantomedes.main.NPC
+	 * Wszystkie typy s¹ zapisane i bêd¹ dodawane w klasie EnumNPCTypes w jantomedes.main.NPC
 	 */
 	public int type;
 	
@@ -34,14 +35,14 @@ public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTa
 	 */
 	public TaskSet taskSet;
 	
-	public EntityNPC(World par1World, int type, NPCGroup group){
+	public EntityNPC(World par1World, EnumNPCTypes type, NPCGroup group){
 		super(par1World);
-		this.type = type;
+		this.type = EnumNPCTypes.getTypeIdByType(type);
 		this.group = group;
-		this.texture = NPCTypes.getTextureByType(type);
-		this.moveSpeed = NPCTypes.getMoveSpeedByType(type);
+		//this.texture = EnumNPCTypes.getTexturePath(type);
+		this.moveSpeed = EnumNPCTypes.getMoveSpeed(type);
 		this.taskSet = new TaskSet(TaskSet.emptyTaskSet);
-		if(NPCTypes.shouldWatchClosestByType(type)){
+		if(EnumNPCTypes.shouldWatchClosest(type)){
 			this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F));
 		}
 		
@@ -49,16 +50,25 @@ public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTa
 
 	@Override
 	public int getMaxHealth(){
-		return 20;
+		EnumNPCTypes.getMaxHealth(EnumNPCTypes.getTypeById(type));
 	}
 	
 	public boolean interact(EntityPlayer entityPlayer)
     {
-       //TODO
+       if(canShowGUI(entityPlayer)){
+    	   //costam.openGUI
+       }
     }
 	
 	public boolean canShowGUI(EntityPlayer entityPlayer){
-		return taskSet.canShowGUI(entityPlayer);
+		if(taskSet.canShowGUI() && taskSet.canShowGUIToPlayer(entityPlayer) && EnumNPCTypes.canShowGUI(EnumNPCTypes.getTypeById(type))){
+			return true;
+		}
+		return false;
 	}
+	
+	public int getAttackStrength(Entity par1Entity){
+		return EnumNPCTypes.getAttackStrength(EnumNPCTypes.getTypeById(type));
+    }
 
 }
