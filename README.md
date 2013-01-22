@@ -3,7 +3,7 @@ TheMinecraft
 
 Projekt serwerowni TheMinecraft.
 
-Jakich narzedzi uzywac?
+Jakich narzedzi uzywac, etc.?
 ============
 Uzywaj tylko Git GUI z paczki http://code.google.com/p/gitextensions/
 eGIT oraz Github sa zbugowane i nie nadaja sie dla tak duzej liczby osob (Jesli jeden plik uzywa wiecej niz 1 osoba GitHub i eGit glupieja calkowicie, dlatego zalecana jest konsola).
