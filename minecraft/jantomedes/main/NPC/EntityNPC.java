@@ -6,6 +6,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTaskListener{
@@ -39,7 +40,7 @@ public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTa
 		super(par1World);
 		this.type = EnumNPCTypes.getTypeIdByType(type);
 		this.group = group;
-		//this.texture = EnumNPCTypes.getTexturePath(type);
+		this.texture = EnumNPCTypes.getTexturePath(type);
 		this.moveSpeed = EnumNPCTypes.getMoveSpeed(type);
 		this.taskSet = new TaskSet(TaskSet.emptyTaskSet);
 		if(EnumNPCTypes.shouldWatchClosest(type)){
@@ -70,5 +71,15 @@ public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTa
 	public int getAttackStrength(Entity par1Entity){
 		return EnumNPCTypes.getAttackStrength(EnumNPCTypes.getTypeById(type));
     }
+	
+	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound){
+		super.writeEntityToNBT(par1NBTTagCompound);
+		par1NBTTagCompound.setInteger("Type of NPC", this.type);
+	}
+	
+	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound){
+		super.readEntityFromNBT(par1NBTTagCompound);
+		this.type = par1NBTTagCompound.getInteger("Type of NPC");
+	}
 
 }

@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 
 public enum EnumNPCTypes {
 
-	TALKER(0, true, 0F, 12, 2),
-	GUARDIAN(1, false, 0F, 20, 5, new ItemStack(Item.swordSteel), false);
+	TALKER(0, true, 0F, 12, "/mob/char.png", 2),
+	GUARDIAN(1, false, 0F, 20, "/mob/char.png", 5, new ItemStack(Item.swordSteel), false);
 	//Oczywiœcie bêdzie i mo¿e byæ wiêcej typów, a one same mog¹ mieæ wiêcej opcji
 	
 	/**Id typu enPeCeka. S³u¿y tylko do tego by ³atwiej by³o zapisaæ typ eNPeCeka
@@ -18,31 +18,31 @@ public enum EnumNPCTypes {
 	private final float moveSpeed;
 	private final int maxHealth;
 	//private final Model model;
-	//private final String texturePath;
+	private final String texturePath;
 	private final int attackStrength;
 	private final ItemStack holdItem;
 	private final boolean shouldWatchClosest;
 	
-	private EnumNPCTypes(int par1, boolean par2, float par3, int par4, int par5, ItemStack par6, boolean par7){
+	private EnumNPCTypes(int par1, boolean par2, float par3, int par4, String par5, int par6, ItemStack par7, boolean par8){
 		this.id = par1;
 		this.canShowGUI = par2;
 		this.moveSpeed = par3;
 		this.maxHealth = par4;
 		//this.model = [...]
-		//this.texturePath = [...]
-		this.attackStrength = par5;
-		this.holdItem = par6;
-		this.shouldWatchClosest = par7;
+		this.texturePath = par5;
+		this.attackStrength = par6;
+		this.holdItem = par7;
+		this.shouldWatchClosest = par8;
 	}
 	
-	private EnumNPCTypes(int par1, boolean par2, float par3, int par4, int par5){
+	private EnumNPCTypes(int par1, boolean par2, float par3, int par4, String par5, int par6){
 		this.id = par1;
 		this.canShowGUI = par2;
 		this.moveSpeed = par3;
 		this.maxHealth = par4;
 		//this.model = [...]
-		//this.texturePath = [...]
-		this.attackStrength = par5;
+		this.texturePath = par5;
+		this.attackStrength = par6;
 		this.holdItem = null;
 		this.shouldWatchClosest = true;
 	}
@@ -82,6 +82,10 @@ public enum EnumNPCTypes {
 	
 	public static boolean shouldWatchClosest(EnumNPCTypes type){
 		return type.shouldWatchClosest;
+	}
+	
+	public static String getTexturePath(EnumNPCTypes type){
+		return type.texturePath;
 	}
 	
 }
