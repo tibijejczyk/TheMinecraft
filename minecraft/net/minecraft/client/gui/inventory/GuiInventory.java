@@ -78,8 +78,8 @@ public class GuiInventory extends InventoryEffectRenderer
     public void drawScreen(int par1, int par2, float par3)
     {
         super.drawScreen(par1, par2, par3);
-        this.xSize_lo = (float)par1;
-        this.ySize_lo = (float)par2;
+       // this.xSize_lo = (float)par1;
+       // this.ySize_lo = (float)par2;
     }
 
     /**
@@ -87,16 +87,16 @@ public class GuiInventory extends InventoryEffectRenderer
      */
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
-        int var4 = this.mc.renderEngine.getTexture("/gui/inventory.png");
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        int var4 = this.mc.renderEngine.getTexture("/TheMinecraft/inv.png");
+    //   GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.renderEngine.bindTexture(var4);
-        int var5 = this.guiLeft;
-        int var6 = this.guiTop;
-        this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
-        func_74223_a(this.mc, var5 + 51, var6 + 75, 30, (float)(var5 + 51) - this.xSize_lo, (float)(var6 + 75 - 50) - this.ySize_lo);
+        int var5 = width / 2 - (243 / 2);
+        int var6 = height / 2 - (168 / 2);
+        this.drawTexturedModalRect(var5, var6, 16, 4, 243, 168);
+        RenderPlayer(this.mc, var5 + 51, var6 + 75, 30, (float)(var5 + 51) - this.xSize_lo, (float)(var6 + 75 - 50) - this.ySize_lo);
     }
-
-    public static void func_74223_a(Minecraft par0Minecraft, int par1, int par2, int par3, float par4, float par5)
+//TODO Oskar13 Edit
+    public static void RenderPlayer(Minecraft par0Minecraft, int par1, int par2, int par3, float par4, float par5)
     {
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);
         GL11.glPushMatrix();

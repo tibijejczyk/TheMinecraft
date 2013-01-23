@@ -59,7 +59,7 @@ public abstract class InventoryEffectRenderer extends GuiContainer
 
         if (!var4.isEmpty())
         {
-            int var5 = this.mc.renderEngine.getTexture("/gui/inventory.png");
+            int var5 = this.mc.renderEngine.getTexture("/TheMinecraft/inv.png");
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glDisable(GL11.GL_LIGHTING);
             int var6 = 33;

@@ -701,7 +701,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 
         if (var5 == CreativeTabs.tabInventory)
         {
-            GuiInventory.func_74223_a(this.mc, this.guiLeft + 43, this.guiTop + 45, 20, (float)(this.guiLeft + 43 - par2), (float)(this.guiTop + 45 - 30 - par3));
+            GuiInventory.RenderPlayer(this.mc, this.guiLeft + 43, this.guiTop + 45, 20, (float)(this.guiLeft + 43 - par2), (float)(this.guiTop + 45 - 30 - par3));
         }
     }
 
