@@ -11,6 +11,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid="TMC J MainNPC", name="MainNPC", version="1.0")
 @NetworkMod(clientSideRequired=true, serverSideRequired=true)
@@ -30,10 +32,13 @@ public class MainNPC{
         @Init
         public void load(FMLInitializationEvent event) {
                 proxy.Jantomedes();
+                EntityRegistry.registerModEntity(EntityNPC.class, "NPC", 0, this, 80, 3, true);
+                LanguageRegistry.instance().addStringLocalization("entity.MainNPC.NPC.name", "Non-player character");
         }
        
         @PostInit
         public void postInit(FMLPostInitializationEvent event) {
         	
         }
+        
 }
