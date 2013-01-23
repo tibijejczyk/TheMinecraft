@@ -3,8 +3,15 @@ package dex3r.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Facing;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.EventBus;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -19,6 +26,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import dex3r.main.factions.Faction;
+import dex3r.main.factions.FactionMember;
+import dex3r.main.factions.skills.FactionSkill;
+import dex3r.main.factions.skills.Skill;
 
 @Mod(modid = "DexTheMc", name = "DeX3r TheMinecraft MOD", version = "0.1.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
@@ -55,6 +65,8 @@ public class DexMain
 		{
 			Faction.init();
 		}
+		
+		MinecraftForge.EVENT_BUS.register(this);
 		
 		// ----------
 		// Blocks:
@@ -101,6 +113,41 @@ public class DexMain
 			}
 		}
 		return false;
+	}
+	
+	@ForgeSubscribe
+	public void attackTargetEntityWithCurrentItem(AttackEntityEvent event)
+	{
+		if(event.entityPlayer != null)
+		{
+			FactionMember member = Faction.allMembers.get(event.entityPlayer.username);
+			if(member != null && member.onWar && member.faction.activeSkills > 0)
+			{
+				FactionSkill skill = member.faction.getSkill(Skill.Strenght);
+				if(skill.isActive())
+				{
+					event.entityPlayer.addStat(StatList.damageDealtStat, member.faction.getSkill(Skill.Strenght).getPower());
+				}
+			}
+		}
+	}
+	
+	@ForgeSubscribe
+	public void damageEntity(LivingHurtEvent event)
+	{
+		if(event.entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)event.entity;
+			FactionMember member = Faction.allMembers.get(player.username);
+			if(member != null && member.onWar && member.faction.activeSkills > 0)
+			{
+				FactionSkill skill = member.faction.getSkill(Skill.Resistance);
+				if(skill.isActive())
+				{
+					event.ammount -= (double)skill.getPower() / 100.0D * event.ammount;
+				}
+			}
+		}
 	}
 }
 

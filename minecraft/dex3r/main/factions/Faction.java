@@ -1,32 +1,30 @@
 package dex3r.main.factions;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerSelector;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.rcon.RConConsoleSource;
-import net.minecraft.util.ChunkCoordinates;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.server.FMLServerHandler;
+import cpw.mods.fml.common.ITickHandler;
+import cpw.mods.fml.common.TickType;
 import dex3r.main.DexMain;
 import dex3r.main.factions.skills.FactionSkill;
 import dex3r.main.factions.skills.Skill;
 
-public class Faction
+public class Faction implements ITickHandler
 {
 	public static List<Faction> factions;
+	public static HashMap<String, FactionMember> allMembers;
+	public static final HashMap<Integer, FactionLevel> STATS;
 
 	public int lvl;
 	public int maxMembers;
 	public String owner;
 	public List<FactionMember> members;
-	public static final HashMap<Integer, FactionLevel> stats;
-	public List<String> enemies;
-	public List<String> allies;
+	
+	public List<Faction> enemies;
+	public List<Faction> allies;
 	private int xp;
 	public String name;
 	public FactionSkill[] skills;
@@ -39,16 +37,16 @@ public class Faction
 		maxMembers = 5;
 		this.name = name;
 		members = new ArrayList<FactionMember>();
-		members.add(new FactionMember(owner, FactionMemberRank.Owner));
-		enemies = new ArrayList<String>();
-		allies = new ArrayList<String>();
+		members.add(new FactionMember(this, owner, FactionMemberRank.Owner));
+		enemies = new ArrayList<Faction>();
+		allies = new ArrayList<Faction>();
 		skills = new FactionSkill[4];
 		activeSkills = 0;
 	}
 
 	public static void init()
 	{
-
+		
 	}
 
 	public static Faction getFaction(String name)
@@ -79,7 +77,61 @@ public class Faction
 					}
 				}
 			}
+			FactionSkill rk = getSkill(Skill.Regeneration);
+			if(rk.isActive())
+			{
+				if(rk.ticks == 0)
+				{
+					for (FactionMember member : members)
+					{
+						if (member.onWar && member.getPlayer() != null)
+						{
+							member.getPlayer().heal(1);
+						}
+					}
+				}
+				rk.ticks = rk.getPower();
+			}
 		}
+	}
+	
+	public boolean addAlly(Faction newF)
+	{
+		if(allies.contains(newF))
+		{
+			return false;
+		}
+		else if(enemies.contains(newF))
+		{
+			enemies.remove(newF);
+		}
+		allies.add(newF);
+		return true;
+	}
+	
+	public boolean addEnemy(Faction newF)
+	{
+		if(enemies.contains(newF))
+		{
+			return false;
+		}
+		else if(allies.contains(newF))
+		{
+			allies.remove(newF);
+		}
+		enemies.add(newF);
+		return true;
+	}
+	
+	public boolean addNeutral(Faction newF)
+	{
+		if(!enemies.contains(newF) && !allies.contains(newF))
+		{
+			return false;
+		}
+		enemies.remove(newF);
+		allies.remove(newF);
+		return true;
 	}
 
 	public FactionSkill getSkill(Skill skill)
@@ -113,18 +165,6 @@ public class Faction
 				{
 					member.getPlayer().heal(s.getPower());
 				}
-				else if (skill == Skill.Strenght)
-				{
-
-				}
-				else if (skill == Skill.Resistance)
-				{
-
-				}
-				else if (skill == Skill.Regeneration)
-				{
-
-				}
 			}
 		}
 		activeSkills++;
@@ -137,7 +177,22 @@ public class Faction
 		{
 			return false;
 		}
-		members.add(new FactionMember(target, FactionMemberRank.Warrior));
+		FactionMember n = new FactionMember(this, target, FactionMemberRank.Warrior);
+		members.add(n);
+		allMembers.put(target, n);
+		return true;
+	}
+	
+	public boolean removeMember(String caller, String target)
+	{
+		FactionMember mTarget = getMember(target);
+		FactionMember mCaller = getMember(caller);
+		if(!DexMain.isPlayerOnline(caller) || mCaller == null || mCaller.rank.isOwner || mTarget == null || (!getMember(caller).rank.isDeputy || target == caller) || mTarget.faction != this)
+		{
+			return false;
+		}
+		members.remove(mTarget);
+		allMembers.remove(target);
 		return true;
 	}
 
@@ -221,7 +276,7 @@ public class Faction
 			return xp;
 		}
 		xp += xp;
-		if (stats.get(lvl).xpToLvl <= xp)
+		if (STATS.get(lvl).xpToLvl <= xp)
 		{
 			lvl++;
 			int t = xp;
@@ -248,10 +303,38 @@ public class Faction
 		}
 		return "neutral";
 	}
+	
+
+	@Override
+	public void tickStart(EnumSet<TickType> type, Object... tickData)
+	{
+		tick();
+	}
+
+	@Override
+	public void tickEnd(EnumSet<TickType> type, Object... tickData)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public EnumSet<TickType> ticks()
+	{
+		EnumSet<TickType> tickTypes = EnumSet.of(TickType.SERVER);
+		return tickTypes;
+	}
+
+	@Override
+	public String getLabel()
+	{
+		return "FactionsTick";
+	}
 
 	static
 	{
-		stats = new HashMap<Integer, FactionLevel>();
+		allMembers = new HashMap<String, FactionMember>();
+		STATS = new HashMap<Integer, FactionLevel>();
 		FactionLevel lvl;
 		int xpToLvl;
 		double maxChunks = 0;
@@ -280,4 +363,5 @@ public class Faction
 			lvl = new FactionLevel(i + 4, xpToLvl, (int) Math.ceil(maxChunks));
 		}
 	}
+
 }

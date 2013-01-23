@@ -11,13 +11,15 @@ public class FactionMember
 	public int xpGiven;
 	public boolean onWar;
 	private EntityPlayer player;
+	public Faction faction;
 	
-	public FactionMember(String nickname, FactionMemberRank rank)
+	public FactionMember(Faction faction, String nickname, FactionMemberRank rank)
 	{
 		this.nickname = nickname;
 		this.rank = rank;
 		xpGiven = 0;
 		onWar = false;
+		this.faction = faction;
 	}
 	
 	public EntityPlayer getPlayer()

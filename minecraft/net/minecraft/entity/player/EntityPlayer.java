@@ -176,11 +176,6 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
      * An instance of a fishing rod's hook. If this isn't null, the icon image of the fishing rod is slightly different
      */
     public EntityFishHook fishEntity = null;
-    
-    //TODO: DeX3rs EDIT
-    //Zrobiony w celach wydajnoœciowych
-    public Faction faction;
-    public FactionMember member;
    
     //TODO Oskar13 EDIT
     //Zrobiony bo mi sie nie chce rozsze¿aæ <3
@@ -1325,15 +1320,6 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
                     var2 += 3 << this.getActivePotionEffect(Potion.damageBoost).getAmplifier();
                 }
                 
-                //TODO: DeX3r Edit
-                if(faction != null && member != null)
-                {
-                	if(faction.activeSkills > 0 && member.onWar)
-                	{
-                		var2 += faction.getSkill(Skill.Strenght).getPower();
-                	}
-                }
-
                 if (this.isPotionActive(Potion.weakness))
                 {
                     var2 -= 2 << this.getActivePotionEffect(Potion.weakness).getAmplifier();
