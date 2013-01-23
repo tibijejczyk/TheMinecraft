@@ -81,5 +81,10 @@ public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTa
 		super.readEntityFromNBT(par1NBTTagCompound);
 		this.type = par1NBTTagCompound.getInteger("Type of NPC");
 	}
+	
+	protected boolean isAIEnabled()
+    {
+        return true;
+    }
 
 }
