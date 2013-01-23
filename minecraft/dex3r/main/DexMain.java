@@ -129,7 +129,6 @@ public class DexMain
 					event.entityPlayer.addStat(StatList.damageDealtStat, member.faction.getSkill(Skill.Strenght).getPower());
 				}
 			}
-			event.target.attackEntityFrom(DamageSource.causePlayerDamage(event.entityPlayer), 50);
 		}
 	}
 	
@@ -149,8 +148,6 @@ public class DexMain
 				}
 			}
 		}
-		
-		event.ammount -= (double)50 / 100.0D * event.ammount;
 	}
 }
 
