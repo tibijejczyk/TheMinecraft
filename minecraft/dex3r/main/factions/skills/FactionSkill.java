@@ -33,6 +33,11 @@ public class FactionSkill
 		return skill.name;
 	}
 	
+	public boolean isActive()
+	{
+		return timeLeft > 0;
+	}
+	
 	public void tick()
 	{
 		if(cooldown > 0)

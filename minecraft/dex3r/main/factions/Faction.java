@@ -19,6 +19,7 @@ import dex3r.main.factions.skills.Skill;
 public class Faction
 {
 	public static List<Faction> factions;
+	public static HashMap<String, FactionMember> allMembers;
 
 	public int lvl;
 	public int maxMembers;
@@ -39,7 +40,7 @@ public class Faction
 		maxMembers = 5;
 		this.name = name;
 		members = new ArrayList<FactionMember>();
-		members.add(new FactionMember(owner, FactionMemberRank.Owner));
+		members.add(new FactionMember(this, owner, FactionMemberRank.Owner));
 		enemies = new ArrayList<String>();
 		allies = new ArrayList<String>();
 		skills = new FactionSkill[4];
@@ -137,7 +138,7 @@ public class Faction
 		{
 			return false;
 		}
-		members.add(new FactionMember(target, FactionMemberRank.Warrior));
+		members.add(new FactionMember(this, target, FactionMemberRank.Warrior));
 		return true;
 	}
 
@@ -251,6 +252,7 @@ public class Faction
 
 	static
 	{
+		allMembers = new HashMap<String, FactionMember>();
 		stats = new HashMap<Integer, FactionLevel>();
 		FactionLevel lvl;
 		int xpToLvl;
