@@ -6,11 +6,13 @@ public class FactionSkill
 	public int lvl;
 	public int cooldown;
 	public int timeLeft;
+	public int ticks;
 	
 	public FactionSkill(Skill skill)
 	{
 		this.skill = skill;
 		timeLeft = 0;
+		ticks = 0;
 	}
 	
 	public int getCooldown()
