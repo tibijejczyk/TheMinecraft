@@ -3,6 +3,7 @@ package jantomedes.main.NPC;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 
 public class ModelNPC extends ModelBase
@@ -143,6 +144,50 @@ public class ModelNPC extends ModelBase
   public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity par7Entity)
   {
     super.setRotationAngles(f, f1, f2, f3, f4, f5, par7Entity);
+    head.rotateAngleY = f3 / 57.29578F;
+    head.rotateAngleX = f4 / 57.29578F;
+    rightarm.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 2.0F * f1 * 0.5F;
+    leftarm.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
+    rightarm.rotateAngleZ = 0.0F;
+    leftarm.rotateAngleZ = 0.0F;
+    rightleg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+    leftleg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
+    rightleg.rotateAngleY = 0.0F;
+    leftleg.rotateAngleY = 0.0F;
+    rightarm.rotateAngleY = 0.0F;
+    leftarm.rotateAngleY = 0.0F;
+    if(onGround > -9990F)
+    {
+        float f6 = onGround;
+        body.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f6) * 3.141593F * 2.0F) * 0.2F;
+        rightarm.rotationPointZ = MathHelper.sin(body.rotateAngleY) * 5F;
+        rightarm.rotationPointX = -MathHelper.cos(body.rotateAngleY) * 5F;
+        leftarm.rotationPointZ = -MathHelper.sin(body.rotateAngleY) * 5F;
+        leftarm.rotationPointX = MathHelper.cos(body.rotateAngleY) * 5F;
+        rightarm.rotateAngleY += body.rotateAngleY;
+        leftarm.rotateAngleY += body.rotateAngleY;
+        leftarm.rotateAngleX += body.rotateAngleY;
+        f6 = 1.0F - onGround;
+        f6 *= f6;
+        f6 *= f6;
+        f6 = 1.0F - f6;
+        float f8 = MathHelper.sin(f6 * 3.141593F);
+        float f10 = MathHelper.sin(onGround * 3.141593F) * -(head.rotateAngleX - 0.7F) * 0.75F;
+        rightarm.rotateAngleX -= (double)f8 * 1.2D + (double)f10;
+        rightarm.rotateAngleY += body.rotateAngleY * 2.0F;
+        rightarm.rotateAngleZ = MathHelper.sin(onGround * 3.141593F) * -0.4F;
+    }
+    body.rotateAngleX = 0.0F;
+    rightleg.rotationPointZ = 0.0F;
+    leftleg.rotationPointZ = 0.0F;
+    rightleg.rotationPointY = 12F;
+    leftleg.rotationPointY = 12F;
+    head.rotationPointY = 0.0F;
+    rightarm.rotateAngleZ += MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
+    leftarm.rotateAngleZ -= MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
+    rightarm.rotateAngleX += MathHelper.sin(f2 * 0.067F) * 0.05F;
+    leftarm.rotateAngleX -= MathHelper.sin(f2 * 0.067F) * 0.05F;
+    
   }
 
 }
