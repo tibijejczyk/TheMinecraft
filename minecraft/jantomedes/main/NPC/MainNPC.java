@@ -17,7 +17,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @Mod(modid="TMC J MainNPC", name="MainNPC", version="1.0")
 @NetworkMod(clientSideRequired=true, serverSideRequired=true)
 public class MainNPC{
-
+	
         @Instance("MainNPC")
         public static MainNPC instance;
        

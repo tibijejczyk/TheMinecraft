@@ -8,11 +8,11 @@ import Oskar13.TheCharacters.ModelSystem.ModelHuman;
 
 public class RenderNPC extends RenderLiving{
 
-	protected ModelHuman model;
+	protected ModelNPC model;
 	
-	public RenderNPC(ModelHuman par1ModelHuman, float par2){
-		super(par1ModelHuman, par2);
-		model = ((ModelHuman)mainModel);
+	public RenderNPC(ModelNPC modelNPC, float par2){
+		super(modelNPC, par2);
+		model = ((ModelNPC)mainModel);
 	}
 
 	public void renderNPC(EntityNPC entity, double par2, double par4, double par6, float par8, float par9)

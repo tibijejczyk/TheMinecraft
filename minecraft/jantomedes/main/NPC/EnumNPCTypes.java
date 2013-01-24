@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 
 public enum EnumNPCTypes {
 
-	TALKER(0, true, 0F, 12, "/mob/char.png", 2),
-	GUARDIAN(1, false, 0F, 20, "/mob/char.png", 5, new ItemStack(Item.swordSteel), false);
+	TALKER(0, true, 0F, 12, "/textures/jantomedes/przykladowa-tekstura.png", 2),
+	GUARDIAN(1, false, 0F, 20, "/textures/jantomedes/przykladowa-tekstura.png", 5, new ItemStack(Item.swordSteel), false);
 	//Oczywiœcie bêdzie i mo¿e byæ wiêcej typów, a one same mog¹ mieæ wiêcej opcji
 	
 	/**Id typu enPeCeka. S³u¿y tylko do tego by ³atwiej by³o zapisaæ typ eNPeCeka
