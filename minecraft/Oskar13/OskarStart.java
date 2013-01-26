@@ -70,7 +70,7 @@ public class OskarStart
 	// PACKETS
 	public PacketSaveData packetSaveData = new PacketSaveData();
     
-    
+	public PacketChat packetChat = new PacketChat();
     
 	private static boolean debug = true;
 
