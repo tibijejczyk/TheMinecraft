@@ -3,6 +3,8 @@ package dex3r.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import Oskar13.APIs.ModChat;
+
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.stats.StatList;
@@ -130,7 +132,7 @@ public class DexMain
 					event.entityPlayer.addStat(StatList.damageDealtStat, member.faction.getSkill(Skill.Strenght).getPower());
 				}
 			}
-			GuiIngame.addNote("[Gildia]", "pierdolnal", 0);
+			ModChat.sendModMessage("Factions", "jebnal", event.entityPlayer.username);
 		}
 	}
 	

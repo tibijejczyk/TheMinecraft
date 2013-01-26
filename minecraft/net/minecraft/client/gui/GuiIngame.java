@@ -1,6 +1,8 @@
 package net.minecraft.client.gui;
 
 import Oskar13.Kolory;
+import Oskar13.OskarStart;
+import Oskar13.APIs.ModChat;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.awt.Color;
