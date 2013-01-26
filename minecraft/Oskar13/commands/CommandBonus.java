@@ -3,6 +3,7 @@ package Oskar13.commands;
 import java.util.HashMap;
 import java.util.Map;
 
+import Oskar13.PacketChat;
 import Oskar13.ItemBonus.ItemBonus;
 
 import net.minecraft.command.CommandBase;
@@ -29,6 +30,9 @@ public class CommandBonus extends CommandBase{
 		 EntityPlayer var3 = getCommandSenderAsPlayer(var1);
 			ItemStack item  = var3.inventory.getCurrentItem();
 	
+			
+		
+			
 			
 			if(item.isItemEnchantable()) {
 				if(var2.length == 2){ 

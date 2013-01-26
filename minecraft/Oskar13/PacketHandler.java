@@ -33,7 +33,7 @@ public static boolean connect = false;
 			case CLIENT: {
 				switch(id) {
 					case 1: OskarStart.instance.packetSaveData.readClient(id, dat, extradata); break;
-					
+					case 2: OskarStart.instance.packetChat.readClient(id, dat, extradata); break;
 			
 				}
 				break;

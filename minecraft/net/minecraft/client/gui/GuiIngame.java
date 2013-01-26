@@ -166,9 +166,8 @@ public class GuiIngame extends Gui
                 f3 *= f3;
                 String s1 = notification.title == null || notification.title.trim().length() <= 0 ? "" : (new StringBuilder()).append(notification.title).append(": ").toString();
          
-     
-        	   // Admin chat
-         this.drawCenteredString(var8, Kolory.zielony + s1 + Kolory.czerwony + notification.message, mc.displayWidth / 2  - (s1.length() / 2), k5, 0xffffff);
+    
+         this.drawString(var8, Kolory.zielony + s1 + Kolory.czerwony + notification.message, mc.displayWidth / 2 / 2 - (s1.trim().length() /2), k5, 0xffffff);
            
                 k5 += 7;
             }
