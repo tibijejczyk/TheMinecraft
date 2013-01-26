@@ -38,6 +38,33 @@ public abstract class ModChat
 	public static void sendModMessageToAll(String name, String message)
 	{
 		
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(110);
+		DataOutputStream dos = new DataOutputStream(bos);
+
+		try
+		{
+			dos.writeInt(2);
+			dos.writeUTF(name);
+			dos.writeUTF(message);
+
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		Packet250CustomPayload pkt = new Packet250CustomPayload();
+		pkt.channel = "Oskar13";
+		pkt.data = bos.toByteArray();
+		pkt.length = bos.size();
+		pkt.isChunkDataPacket = false;
+		
+		if (FMLCommonHandler.instance().getSide() == Side.SERVER)
+		{
+			PacketDispatcher.sendPacketToAllPlayers(pkt);
+		}
+		
+		
+		
 	}
 	
 	/**
@@ -47,7 +74,7 @@ public abstract class ModChat
 	 */
 	public static void sendModMessageToOps(String name, String message)
 	{
-		
+
 	}
 	
 	/**
