@@ -6,14 +6,14 @@ import net.minecraft.item.ItemStack;
 
 public enum EnumNPCTypes {
 
-	TALKER(0, true, 0F, 12, "/textures/jantomedes/przykladowa-tekstura.png", 2),
-	GUARDIAN(1, false, 0F, 20, "/textures/jantomedes/przykladowa-tekstura.png", 5, new ItemStack(Item.swordSteel), false);
+	TALKER((byte)0, true, 0F, 12, "/textures/jantomedes/przykladowa-tekstura.png", 2),
+	GUARDIAN((byte)1, false, 0F, 20, "/textures/jantomedes/przykladowa-tekstura.png", 5, new ItemStack(Item.swordSteel), false);
 	//Oczywiœcie bêdzie i mo¿e byæ wiêcej typów, a one same mog¹ mieæ wiêcej opcji
 	
 	/**Id typu enPeCeka. S³u¿y tylko do tego by ³atwiej by³o zapisaæ typ eNPeCeka
 	 * w tagach NBT.
 	 */
-	private final int id;
+	private final byte id;
 	private final boolean canShowGUI;
 	private final float moveSpeed;
 	private final int maxHealth;
@@ -23,7 +23,7 @@ public enum EnumNPCTypes {
 	private final ItemStack holdItem;
 	private final boolean shouldWatchClosest;
 	
-	private EnumNPCTypes(int par1, boolean par2, float par3, int par4, String par5, int par6, ItemStack par7, boolean par8){
+	private EnumNPCTypes(byte par1, boolean par2, float par3, int par4, String par5, int par6, ItemStack par7, boolean par8){
 		this.id = par1;
 		this.canShowGUI = par2;
 		this.moveSpeed = par3;
@@ -35,7 +35,7 @@ public enum EnumNPCTypes {
 		this.shouldWatchClosest = par8;
 	}
 	
-	private EnumNPCTypes(int par1, boolean par2, float par3, int par4, String par5, int par6){
+	private EnumNPCTypes(byte par1, boolean par2, float par3, int par4, String par5, int par6){
 		this.id = par1;
 		this.canShowGUI = par2;
 		this.moveSpeed = par3;
@@ -47,7 +47,7 @@ public enum EnumNPCTypes {
 		this.shouldWatchClosest = true;
 	}
 	
-	public static int getTypeIdByType(EnumNPCTypes type){
+	public static byte getTypeIdByType(EnumNPCTypes type){
 		return type.id;
 	}
 	

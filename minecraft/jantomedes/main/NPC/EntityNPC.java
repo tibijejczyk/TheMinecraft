@@ -1,5 +1,6 @@
 package jantomedes.main.NPC;
 
+import jantomedes.main.NPC.Tasks.TaskSet;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
@@ -9,18 +10,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTaskListener{
+public class EntityNPC extends EntityCreature implements INPCQuestListener, INPCTaskListener{
 
 	/**Typ, od którego mo¿e zale¿eæ np. kszta³t modelu, tekstura, zachowanie itp.
 	 * Wszystkie typy s¹ zapisane i bêd¹ dodawane w klasie EnumNPCTypes w jantomedes.main.NPC
 	 */
-	public int type;
+	public byte type;
 	
 	/**Grupa NPC jest moim pomys³em, który u³atwi komunikacje eNPeCów z adminem.
 	 * Dziêki temu jeœli admin chce ustaliæ jak¹œ listê questów danym eNPeCom to nie musi tego
 	 * ustalaæ dla ka¿dego z osobna, tylko wystarczy, ¿e zrobi to dla danej grupy.
+	 * Mo¿e te¿ rozkazaæ jakiœ task danej grupie eNPeCów.
 	 */
-	public NPCGroup group;
+	public String group;
 	
 	/**Unikalne id nadawane ka¿demu eNPeCowi
 	 * Szczerze mówi¹c, nie wiem czy ma to jakiœ specjalny sens, no có¿, Oskar mnie o to
@@ -36,17 +38,21 @@ public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTa
 	 */
 	public TaskSet taskSet;
 	
-	public EntityNPC(World par1World, EnumNPCTypes type, NPCGroup group){
+	public EntityNPC(World par1World, EnumNPCTypes typeArg, String group){
 		super(par1World);
-		this.type = EnumNPCTypes.getTypeIdByType(type);
+		this.type = EnumNPCTypes.getTypeIdByType(typeArg);
 		this.group = group;
-		this.texture = EnumNPCTypes.getTexturePath(type);
-		this.moveSpeed = EnumNPCTypes.getMoveSpeed(type);
-		this.taskSet = new TaskSet(TaskSet.emptyTaskSet);
-		if(EnumNPCTypes.shouldWatchClosest(type)){
+		this.texture = EnumNPCTypes.getTexturePath(typeArg);
+		this.moveSpeed = EnumNPCTypes.getMoveSpeed(typeArg);
+		this.taskSet = new TaskSet();
+		addAITasks(typeArg);
+		
+	}
+
+	private void addAITasks(EnumNPCTypes typeArg){
+		if(EnumNPCTypes.shouldWatchClosest(typeArg)){
 			this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F));
 		}
-		
 	}
 
 	@Override
@@ -57,12 +63,15 @@ public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTa
 	public boolean interact(EntityPlayer entityPlayer)
     {
        if(canShowGUI(entityPlayer)){
-    	   //costam.openGUI
+    	   entityPlayer.addChatMessage("GUI siê pokazuje");
+       }
+       else{
+    	   entityPlayer.addChatMessage("GUI siê nie pokazuje");
        }
     }
 	
 	public boolean canShowGUI(EntityPlayer entityPlayer){
-		if(taskSet.canShowGUI() && taskSet.canShowGUIToPlayer(entityPlayer) && EnumNPCTypes.canShowGUI(EnumNPCTypes.getTypeById(type))){
+		if(taskSet.canShowGUIToPlayer(entityPlayer) && EnumNPCTypes.canShowGUI(EnumNPCTypes.getTypeById(type))){
 			return true;
 		}
 		return false;
@@ -79,7 +88,7 @@ public class EntityNPC extends EntityCreature implements NPCQuestListener, NPCTa
 	
 	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound){
 		super.readEntityFromNBT(par1NBTTagCompound);
-		this.type = par1NBTTagCompound.getInteger("Type of NPC");
+		this.type = (byte)par1NBTTagCompound.getInteger("Type of NPC");
 	}
 	
 	protected boolean isAIEnabled()
