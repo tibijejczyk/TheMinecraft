@@ -1,5 +1,6 @@
 package jantomedes.main.NPC;
 
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import jantomedes.main.NPC.Tasks.TaskSet;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -10,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntityNPC extends EntityCreature implements INPCQuestListener, INPCTaskListener{
+public class EntityNPC extends EntityCreature{
 
 	/**Typ, od którego mo¿e zale¿eæ np. kszta³t modelu, tekstura, zachowanie itp.
 	 * Wszystkie typy s¹ zapisane i bêd¹ dodawane w klasie EnumNPCTypes w jantomedes.main.NPC
@@ -38,35 +39,41 @@ public class EntityNPC extends EntityCreature implements INPCQuestListener, INPC
 	 */
 	public TaskSet taskSet;
 	
-	public EntityNPC(World par1World, EnumNPCTypes typeArg, String group){
+	public EntityNPC(World par1World){
 		super(par1World);
+	}
+	
+	protected void initSettings(EnumNPCTypes typeArg, String group)
+    {
 		this.type = EnumNPCTypes.getTypeIdByType(typeArg);
 		this.group = group;
 		this.texture = EnumNPCTypes.getTexturePath(typeArg);
 		this.moveSpeed = EnumNPCTypes.getMoveSpeed(typeArg);
 		this.taskSet = new TaskSet();
 		addAITasks(typeArg);
-		
-	}
-
+    }
+	
 	private void addAITasks(EnumNPCTypes typeArg){
 		if(EnumNPCTypes.shouldWatchClosest(typeArg)){
 			this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F));
 		}
 	}
+	
 
 	@Override
 	public int getMaxHealth(){
-		EnumNPCTypes.getMaxHealth(EnumNPCTypes.getTypeById(type));
+		return EnumNPCTypes.getMaxHealth(EnumNPCTypes.getTypeById(type));
 	}
 	
 	public boolean interact(EntityPlayer entityPlayer)
     {
        if(canShowGUI(entityPlayer)){
     	   entityPlayer.addChatMessage("GUI siê pokazuje");
+    	   return true;
        }
        else{
     	   entityPlayer.addChatMessage("GUI siê nie pokazuje");
+    	   return false;
        }
     }
 	

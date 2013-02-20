@@ -1,15 +1,21 @@
 package jantomedes.main.NPC;
 
+import net.minecraft.command.CommandHandler;
+import net.minecraft.server.MinecraftServer;
+import Oskar13.commands.CommandBonus;
+import Oskar13.commands.CommandMessage;
 import jantomedes.proxy.ServerProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.ServerStarted;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -40,5 +46,12 @@ public class MainNPC{
         public void postInit(FMLPostInitializationEvent event) {
         	
         }
+        
+        @ServerStarted
+    	public void onServerStarted(FMLServerStartedEvent event) {
+    		CommandHandler handler = (CommandHandler) MinecraftServer.getServer().getCommandManager();
+    		
+    		handler.registerCommand(new  CommandNPC());
+    	}
         
 }

@@ -4,8 +4,10 @@ import java.util.List;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.command.WrongUsageException;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.GameRules;
 
 public class CommandNPC extends CommandBase
@@ -30,7 +32,15 @@ public class CommandNPC extends CommandBase
 
     public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-    	if(par2ArrayOfStr[0] == "help"){
+    	MinecraftServer server = ModLoader.getMinecraftServerInstance();
+		EntityPlayer player = server.getConfigurationManager().getPlayerForUsername(par1ICommandSender.getCommandSenderName());
+		EntityNPC entityNPC = new EntityNPC(player.worldObj);
+		entityNPC.initSettings(EnumNPCTypes.TALKER, null);
+		entityNPC.posX = player.posX;
+		entityNPC.posY = player.posY;
+		entityNPC.posZ = player.posZ;
+		player.worldObj.spawnEntityInWorld(entityNPC);
+    	/*if(par2ArrayOfStr[0] == "help"){
     		if(par2ArrayOfStr.length==1){
     			par1ICommandSender.sendChatToPlayer("Dostepne opcje:");
     			par1ICommandSender.sendChatToPlayer("character - tworzy, usuwa, lub zarzadza eNPeCekami");
@@ -51,9 +61,27 @@ public class CommandNPC extends CommandBase
     			else{
     				par1ICommandSender.sendChatToPlayer("Niepoprawne u¿ycie /npc help");
     			}
-    			//TODO
+    			if(par2ArrayOfStr[0] == "character" && par2ArrayOfStr[1] == "create" && par2ArrayOfStr[2] == "&test1"){
+    				MinecraftServer server = ModLoader.getMinecraftServerInstance();
+    				EntityPlayer player = server.getConfigurationManager().getPlayerForUsername(par1ICommandSender.getCommandSenderName());
+    				EntityNPC entityNPC = new EntityNPC(player.worldObj, EnumNPCTypes.TALKER, null);
+    				entityNPC.posX = player.posX;
+    				entityNPC.posY = player.posY;
+    				entityNPC.posZ = player.posZ;
+    				player.worldObj.spawnEntityInWorld(entityNPC);
+    			}
+    			
+    			if(par2ArrayOfStr[0] == "character" && par2ArrayOfStr[1] == "create" && par2ArrayOfStr[2] == "&test2"){
+    				MinecraftServer server = ModLoader.getMinecraftServerInstance();
+    				EntityPlayer player = server.getConfigurationManager().getPlayerForUsername(par1ICommandSender.getCommandSenderName());
+    				EntityNPC entityNPC = new EntityNPC(player.worldObj, EnumNPCTypes.TALKER, null);
+    				entityNPC.posX = player.posX;
+    				entityNPC.posY = player.posY;
+    				entityNPC.posZ = player.posZ;
+    				player.worldObj.spawnEntityInWorld(entityNPC);
+    			}
     		}
-    	}
+    	}*/
     	
     	
     	
